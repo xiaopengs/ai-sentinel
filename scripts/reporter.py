@@ -9,6 +9,8 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from quality_scorer import QualityScorer
+
 
 class ReportGenerator:
     """报告生成器"""
@@ -23,6 +25,9 @@ class ReportGenerator:
             loader=FileSystemLoader(str(self.template_dir)),
             autoescape=select_autoescape(['html', 'xml'])
         )
+        
+        # 添加自定义过滤器
+        self.env.filters['commalist'] = lambda x: f"{x:,}" if isinstance(x, (int, float)) else str(x)
     
     def generate(self, analyzed_data, report_type="morning"):
         """
@@ -92,11 +97,19 @@ class ReportGenerator:
             date_str = datetime.now().strftime("%Y年%m月%d日")
             time_str = datetime.now().strftime("%H:%M")
         
+        # 生成今日摘要
+        daily_summary = self._generate_daily_summary(categorized, insights, summary)
+        
         # 问候语
         greetings = {
             "morning": "早安",
             "evening": "晚安"
         }
+        
+        # 质量评分
+        scorer = QualityScorer()
+        score_result = scorer.score_report(data)
+        quality_card = scorer.generate_quality_card(score_result)
         
         return {
             "date_str": date_str,
@@ -107,15 +120,56 @@ class ReportGenerator:
             "summary": summary,
             "categorized": categorized,
             "insights": insights,
-            "must_read": insights.get("must_read", [])[:15],
+            "must_read": insights.get("must_read", [])[:10],
             "hot_topics": insights.get("hot_topics", []),
             "trending_projects": insights.get("trending_projects", [])[:5],
-            "important_papers": insights.get("important_papers", [])[:5],
+            "important_papers": insights.get("important_papers", [])[:2],  # 只展示最重要的2篇论文
+            "top_picks": insights.get("must_read", [])[:5],  # 编辑精选
             "papers": categorized.get("papers", [])[:10],
             "projects": categorized.get("projects", [])[:10],
             "discussions": categorized.get("discussions", [])[:10],
-            "news": categorized.get("news", [])[:10]
+            "news": categorized.get("news", [])[:10],
+            "tweets": categorized.get("tweets", [])[:5],
+            # 质量评分相关
+            "daily_summary": daily_summary,
+            "quality_score": score_result,
+            "quality_card": quality_card
         }
+    
+    def _generate_daily_summary(self, categorized, insights, summary):
+        """生成今日摘要"""
+        summary_parts = []
+        
+        # 论文
+        papers = categorized.get("papers", [])
+        if papers:
+            summary_parts.append(f"{len(papers)}篇学术论文")
+        
+        # 项目
+        projects = categorized.get("projects", [])
+        if projects:
+            summary_parts.append(f"{len(projects)}个开源项目")
+        
+        # 讨论
+        discussions = categorized.get("discussions", [])
+        if discussions:
+            summary_parts.append(f"{len(discussions)}条社区讨论")
+        
+        # 新闻
+        news = categorized.get("news", [])
+        if news:
+            summary_parts.append(f"{len(news)}条行业动态")
+        
+        # 热词
+        hot_topics = insights.get("hot_topics", [])
+        if hot_topics:
+            topics_str = "、".join(hot_topics[:3])
+            summary_parts.append(f"热门话题：{topics_str}")
+        
+        if summary_parts:
+            return "今日AI领域有新动态，涵盖" + "，".join(summary_parts)
+        else:
+            return "暂无重要更新"
     
     def _get_default_template(self, report_type):
         """获取默认模板"""

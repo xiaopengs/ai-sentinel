@@ -44,7 +44,7 @@ def fetch_blog_rss(config):
     return items
 
 
-def _fetch_single_feed(name, url, limit=5):
+def _fetch_single_feed(name, url, limit=5, max_retries=2):
     """
     获取单个RSS源的内容
     
@@ -52,6 +52,7 @@ def _fetch_single_feed(name, url, limit=5):
         name: 源名称
         url: RSS地址
         limit: 返回数量
+        max_retries: 最大重试次数
     
     Returns:
         list: 文章列表
@@ -62,28 +63,45 @@ def _fetch_single_feed(name, url, limit=5):
         "Accept": "application/rss+xml, application/xml, text/xml, application/atom+xml, */*"
     }
     
-    try:
-        # 先尝试直接请求
-        response = requests.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
-        
-        # 使用feedparser解析
-        feed = feedparser.parse(response.text)
-        
-        items = []
-        for entry in feed.entries[:limit]:
-            item = _parse_feed_entry(entry, name, url)
-            if item:
-                items.append(item)
-        
-        return items
-        
-    except requests.exceptions.RequestException as e:
-        print(f"RSS请求失败 ({name}): {e}")
-        return []
-    except Exception as e:
-        print(f"RSS解析失败 ({name}): {e}")
-        return []
+    last_error = None
+    
+    for attempt in range(max_retries + 1):
+        try:
+            # 先尝试直接请求，增加超时设置
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            # 使用feedparser解析
+            feed = feedparser.parse(response.text)
+            
+            items = []
+            for entry in feed.entries[:limit]:
+                item = _parse_feed_entry(entry, name, url)
+                if item:
+                    items.append(item)
+            
+            return items
+            
+        except requests.exceptions.Timeout:
+            last_error = f"超时 (10秒)"
+            if attempt < max_retries:
+                print(f"RSS请求超时 ({name}), 正在重试 ({attempt + 1}/{max_retries})...")
+        except requests.exceptions.ConnectionError as e:
+            last_error = f"连接失败"
+            if attempt < max_retries:
+                print(f"RSS连接失败 ({name}), 正在重试 ({attempt + 1}/{max_retries})...")
+        except requests.exceptions.RequestException as e:
+            last_error = str(e)
+            if attempt < max_retries:
+                print(f"RSS请求失败 ({name}): {e}, 正在重试 ({attempt + 1}/{max_retries})...")
+            break  # 其他请求错误不重试
+        except Exception as e:
+            print(f"RSS解析失败 ({name}): {e}")
+            return []
+    
+    # 所有重试都失败后
+    print(f"RSS请求最终失败 ({name}): {last_error}")
+    return []
 
 
 def _parse_feed_entry(entry, source_name, source_url):

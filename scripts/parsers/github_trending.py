@@ -82,7 +82,15 @@ def fetch_github_trending(config):
                 "source_type": "repository"
             })
         
-        return items
+        # 按URL去重，确保每个项目只出现一次
+        seen_urls = set()
+        unique_items = []
+        for item in items:
+            if item["url"] not in seen_urls:
+                seen_urls.add(item["url"])
+                unique_items.append(item)
+        
+        return unique_items
         
     except requests.exceptions.RequestException as e:
         print(f"GitHub API请求失败: {e}")
