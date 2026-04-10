@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI前沿哨兵 - 控制台</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">⌘</span>
+                <span class="logo-text">哨兵</span>
+            </div>
+            
+            <nav class="nav">
+                <button class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">◈</span>
+                    <span class="nav-label">概览</span>
+                </button>
+                <button class="nav-item" data-view="sources">
+                    <span class="nav-icon">◎</span>
+                    <span class="nav-label">信息源</span>
+                </button>
+                <button class="nav-item" data-view="reports">
+                    <span class="nav-icon">◫</span>
+                    <span class="nav-label">报告</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span class="nav-label">配置</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">就绪</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main">
+            <!-- 顶部栏 -->
+            <header class="header">
+                <div class="header-title">
+                    <h1 id="viewTitle">概览</h1>
+                    <span class="header-time" id="currentTime"></span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="collectBtn">
+                        <span>⏱</span> 立即采集
+                    </button>
+                    <button class="btn btn-primary" id="reportBtn">
+                        <span>◧</span> 生成报告
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content">
+                <!-- 概览视图 -->
+                <div class="view active" id="dashboardView">
+                    <!-- 统计卡片 -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="statGithub">-</div>
+                            <div class="stat-label">GitHub项目</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statArxiv">-</div>
+                            <div class="stat-label">arXiv论文</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statHN">-</div>
+                            <div class="stat-label">HN讨论</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statBlogs">-</div>
+                            <div class="stat-label">博客文章</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热门内容 -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h2>热门内容</h2>
+                            <div class="filter-tabs">
+                                <button class="tab active" data-filter="all">全部</button>
+                                <button class="tab" data-filter="projects">项目</button>
+                                <button class="tab" data-filter="papers">论文</button>
+                                <button class="tab" data-filter="discussions">讨论</button>
+                            </div>
+                        </div>
+                        <div class="content-list" id="hotContent">
+                            <!-- 动态内容 -->
+                        </div>
+                    </section>
+                    
+                    <!-- 最近采集 -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h2>最近采集记录</h2>
+                        </div>
+                        <div class="log-list" id="logList">
+                            <div class="log-empty">暂无采集记录</div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- 信息源视图 -->
+                <div class="view" id="sourcesView">
+                    <div class="sources-grid" id="sourcesGrid">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 报告视图 -->
+                <div class="view" id="reportsView">
+                    <div class="report-controls">
+                        <select class="select" id="reportType">
+                            <option value="morning">晨报</option>
+                            <option value="evening">晚报</option>
+                        </select>
+                        <button class="btn btn-primary" id="generateReportBtn">生成报告</button>
+                    </div>
+                    <div class="report-preview" id="reportPreview">
+                        <div class="report-empty">
+                            <p>点击"生成报告"按钮预览报告内容</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 配置视图 -->
+                <div class="view" id="settingsView">
+                    <div class="settings-group">
+                        <h3>API配置</h3>
+                        <div class="setting-item">
+                            <label>Twitter Bearer Token</label>
+                            <input type="password" id="twitterToken" placeholder="请输入Token">
+                            <span class="setting-hint">用于采集Twitter内容，可选配置</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>关键词设置</h3>
+                        <div class="setting-item">
+                            <label>关注关键词</label>
+                            <div class="tags-input" id="keywordsTags">
+                                <input type="text" id="newKeyword" placeholder="输入关键词后按回车添加">
+                            </div>
+                            <span class="setting-hint">相关内容会获得额外加分</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>调度设置</h3>
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="morningEnabled" checked>
+                                <span>晨报 (08:00)</span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="eveningEnabled" checked>
+                                <span>晚报 (20:00)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveSettingsBtn">保存配置</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Toast通知 -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- 加载状态 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <span>采集中...</span>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

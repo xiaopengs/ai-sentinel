@@ -1,0 +1,134 @@
+# AI前沿哨兵 - 信息源配置
+# 配置需要采集的信息源
+
+# GitHub Trending配置
+github:
+  enabled: true
+  language: python
+  date_range: daily  # daily / weekly / monthly
+  limit: 20
+  # 可添加关键词过滤
+  keywords:
+    - AI
+    - machine-learning
+    - deep-learning
+    - LLM
+    - GPT
+
+# arXiv论文配置
+arxiv:
+  enabled: true
+  # 论文类别，常见AI类别:
+  # cs.AI - Artificial Intelligence
+  # cs.LG - Machine Learning
+  # cs.CL - Computation and Language
+  # cs.CV - Computer Vision
+  # cs.NE - Neural and Evolutionary Computing
+  categories:
+    - cs.AI
+    - cs.LG
+    - cs.CL
+  max_results: 20
+  # 自定义搜索词 (可选)
+  search_query: "GPT OR transformer OR diffusion"
+
+# HackerNews配置
+hackernews:
+  enabled: true
+  # 获取类型: top / new / best / ask / show
+  item_type: top
+  limit: 20
+  # 关键词过滤，用于筛选AI相关内容
+  keywords:
+    - AI
+    - ML
+    - machine learning
+    - neural
+    - LLM
+    - GPT
+    - Claude
+    - deep learning
+    - language model
+    - open source AI
+
+# Twitter/X配置
+# 注意: 需要配置API Key才会生效，详见 references/api_setup.md
+twitter:
+  enabled: false
+  # 关注的账号列表
+  accounts:
+    - ylecun           # Yann LeCun
+    - sama             # Sam Altman
+    - AndrewYNg        # Andrew Ng
+    - binduredy        # Google AI
+  # 搜索关键词
+  keywords:
+    - AI
+    - machine learning
+    - LLM
+    - GPT-4
+    - Claude
+  limit: 20
+
+# RSS博客订阅配置
+blogs:
+  enabled: true
+  limit_per_feed: 5
+  feeds:
+    # AI公司官方博客
+    - name: Anthropic News
+      url: https://www.anthropic.com/news/rss
+      category: AI Company
+      
+    - name: OpenAI Blog
+      url: https://openai.com/blog/rss.xml
+      category: AI Company
+      enabled: false  # 可单独禁用
+      
+    - name: Google AI Blog
+      url: https://blog.google/technology/ai/rss/
+      category: AI Company
+      
+    - name: DeepMind Blog
+      url: https://deepmind.com/blog/feed/basic/
+      category: AI Company
+      
+    - name: Meta AI Blog
+      url: https://ai.meta.com/blog/
+      category: AI Company
+      enabled: false  # 没有RSS，使用其他源
+      
+    - name: Microsoft AI Blog
+      url: https://blogs.microsoft.com/ai/feed/
+      category: AI Company
+      
+    - name: Hugging Face Blog
+      url: https://huggingface.co/blog/feed.xml
+      category: AI Company
+      
+    # 中国AI公司
+    - name: 智谱AI
+      url: https://www.zhipuai.cn/
+      category: Chinese AI
+      enabled: false  # 无RSS
+      
+    - name: MiniMax
+      url: https://www.minimaxi.com/
+      category: Chinese AI
+      enabled: false  # 无RSS
+      
+    # 科技媒体
+    - name: TechCrunch AI
+      url: https://techcrunch.com/category/artificial-intelligence/feed/
+      category: Tech Media
+      
+    - name: VentureBeat AI
+      url: https://venturebeat.com/category/ai/feed/
+      category: Tech Media
+
+# 自定义RSS源 (可添加更多)
+custom_feeds:
+  - name: ""           # 源名称
+    url: ""            # RSS地址
+    category: ""       # 分类
+    enabled: true
