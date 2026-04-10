@@ -13,29 +13,42 @@ def fetch_github_trending(config):
     Args:
         config: 信息源配置，包含:
             - language: 编程语言 (默认: python)
-            - date_range: 时间范围 (daily/weekly/monthly)
+            - date_range: 时间范围 (daily/weekly/monthly)，用于筛选新项目
             - limit: 返回数量 (默认: 20)
+            - keywords: 关键词过滤列表
     
     Returns:
         list: 项目列表，每项包含 title, description, url, stars, forks, language
     """
     language = config.get("language", "python")
-    date_range = config.get("date_range", "daily")
+    date_range = config.get("date_range", "weekly")
     limit = config.get("limit", 20)
-    
-    # 设置时间参数
-    if date_range == "daily":
-        since = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-    elif date_range == "weekly":
-        since = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-    else:
-        since = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+    keywords = config.get("keywords", [])
     
     # GitHub API请求
     # 使用搜索API按star排序获取热门项目
+    # 构建查询：按语言获取热门项目
+    query = f"language:{language}"
+    
+    # 如果设置了关键词，添加关键词过滤
+    if keywords:
+        keyword_query = " OR ".join(keywords)
+        query = f"({query}) AND ({keyword_query})"
+    
+    # 设置时间参数（只在需要筛选新项目时使用）
+    date_filter = ""
+    if date_range:
+        if date_range == "daily":
+            since = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        elif date_range == "weekly":
+            since = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        else:
+            since = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+        date_filter = f" created:>{since}"
+    
     url = "https://api.github.com/search/repositories"
     params = {
-        "q": f"created:>{since}+language:{language}",
+        "q": query + date_filter,
         "sort": "stars",
         "order": "desc",
         "per_page": min(limit, 100)
@@ -53,6 +66,7 @@ def fetch_github_trending(config):
         
         items = []
         for repo in data.get("items", [])[:limit]:
+            # 如果没有设置关键词过滤但有结果，返回
             items.append({
                 "title": repo.get("full_name", ""),
                 "description": repo.get("description", "") or "无描述",
