@@ -75,47 +75,60 @@ blogs:
   enabled: true
   limit_per_feed: 5
   feeds:
-    # AI公司官方博客
-    - name: Anthropic News
-      url: https://www.anthropic.com/news/rss
+    # Anthropic (社区维护源)
+    - name: Anthropic Engineering
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml
       category: AI Company
       
+    - name: Anthropic News
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml
+      category: AI Company
+      
+    - name: Claude Blog
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml
+      category: AI Company
+      
+    # OpenAI
     - name: OpenAI Blog
       url: https://openai.com/blog/rss.xml
       category: AI Company
-      enabled: false  # 可单独禁用
       
+    - name: OpenAI Research
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_research.xml
+      category: AI Company
+      
+    # Google/DeepMind
     - name: Google AI Blog
-      url: https://blog.google/technology/ai/rss/
+      url: https://research.google/blog/rss
       category: AI Company
       
     - name: DeepMind Blog
-      url: https://deepmind.com/blog/feed/basic/
-      category: AI Company
-      
-    - name: Meta AI Blog
-      url: https://ai.meta.com/blog/
-      category: AI Company
-      enabled: false  # 没有RSS，使用其他源
-      
-    - name: Microsoft AI Blog
-      url: https://blogs.microsoft.com/ai/feed/
+      url: https://deepmind.google/blog/rss.xml
       category: AI Company
       
     - name: Hugging Face Blog
       url: https://huggingface.co/blog/feed.xml
       category: AI Company
       
-    # 中国AI公司
-    - name: 智谱AI
-      url: https://www.zhipuai.cn/
-      category: Chinese AI
-      enabled: false  # 无RSS
+    # xAI
+    - name: xAI News
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml
+      category: AI Company
       
-    - name: MiniMax
-      url: https://www.minimaxi.com/
-      category: Chinese AI
-      enabled: false  # 无RSS
+    # Cursor
+    - name: Cursor Blog
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml
+      category: AI Tool
+      
+    # DeepLearning.AI
+    - name: The Batch
+      url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml
+      category: AI Education
+      
+    # 学术博客
+    - name: BAIR Blog
+      url: https://bair.berkeley.edu/blog/feed.xml
+      category: Research
       
     # 科技媒体
     - name: TechCrunch AI
