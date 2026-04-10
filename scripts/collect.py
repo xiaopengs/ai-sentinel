@@ -62,6 +62,9 @@ class DataCollector:
         print(f"[{datetime.now().strftime('%H:%M:%S')}] 开始采集...")
         
         for source_name, source_config in self.sources.items():
+            # 跳过列表类型的配置（由其他源处理）
+            if isinstance(source_config, list):
+                continue
             if not source_config.get("enabled", True):
                 print(f"  ⏭️  跳过 {source_name} (已禁用)")
                 continue
@@ -87,6 +90,11 @@ class DataCollector:
         source_config = self.sources.get(source_name)
         if not source_config:
             print(f"❌ 未找到信息源: {source_name}")
+            return None
+        
+        # 跳过列表类型的配置
+        if isinstance(source_config, list):
+            print(f"❌ {source_name} 是列表类型，无法单独采集")
             return None
         
         if not source_config.get("enabled", True):
@@ -122,6 +130,13 @@ class DataCollector:
             items = fetch_blog_rss(source_config)
         elif source_name == "chinese_ai_companies":
             items = parse_web_news({"chinese_ai_companies": source_config})
+        elif source_name == "custom_feeds":
+            # 自定义RSS源，复用blog_rss解析器
+            items = fetch_blog_rss({"enabled": True, "limit_per_feed": 10, "feeds": source_config if isinstance(source_config, list) else [source_config]})
+        elif source_name == "rsshub":
+            # RSSHub实例，暂不处理（需要特殊配置）
+            print(f"    ⏭️  RSSHub实例需要单独配置代理")
+            return []
         else:
             print(f"    ⚠️  未知的源类型: {source_name}")
             return []

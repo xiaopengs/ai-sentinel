@@ -51,17 +51,62 @@ hackernews:
     - language model
     - open source AI
 
-# Twitter/X配置
-# 注意: 需要配置API Key才会生效，详见 references/api_setup.md
+# RSSHub实例配置
+# 自部署的RSSHub服务，支持多种信息源
+rsshub:
+  instance_url: https://brain.zeabur.app
+  enabled: true
+  
+  # Twitter/X配置 (注意: Twitter反爬严格，可能需要配置代理)
+  twitter:
+    enabled: false  # 当前Twitter路由受限，暂不启用
+    # 关注的AI领袖账号
+    accounts:
+      - name: Yann LeCun
+        handle: ylecun
+        category: Research
+      - name: Sam Altman
+        handle: sama
+        category: Industry Leader
+      - name: Andrew Ng
+        handle: AndrewYNg
+        category: Education
+      - name: Dario Amodei
+        handle: DarioAmodei
+        category: AI Company
+      - name: Jensen Huang
+        handle: nvidia
+        category: Hardware
+      - name: Andrej Karpathy
+        handle: karpathy
+        category: Research
+      - name: Lilian Weng
+        handle: lilianweng
+        category: Research
+      - name: Jason Wei
+        handle: _jasonwei
+        category: Research
+      - name: Ilya Sutskever
+        handle: IlyaSutskever
+        category: Research
+      - name: Fei-Fei Li
+        handle: drfeifei
+        category: Research
+    # 搜索关键词
+    search_queries:
+      - "AI breakthrough"
+      - "LLM news"
+      - "machine learning"
+    limit: 20
+
+# 原始Twitter配置 (需要API Key)
 twitter:
   enabled: false
-  # 关注的账号列表
   accounts:
-    - ylecun           # Yann LeCun
-    - sama             # Sam Altman
-    - AndrewYNg        # Andrew Ng
-    - binduredy        # Google AI
-  # 搜索关键词
+    - ylecun
+    - sama
+    - AndrewYNg
+    - binduredy
   keywords:
     - AI
     - machine learning
@@ -142,26 +187,24 @@ blogs:
 # 中国AI公司官网新闻监控 (无RSS，使用网页解析)
 # 注意: 这些源需要使用topic_tracking技能或自定义解析器
 chinese_ai_companies:
-  enabled: true
-  
-  # 智谱GLM - 新品发布页
   - name: 智谱AI新品发布
+    enabled: true
     url: https://docs.bigmodel.cn/cn/update/new-releases
     company: ZhipuAI (智谱)
     category: AI Company
     parser: web_news  # 使用网页新闻解析器
     update_frequency: daily  # 每日检查更新
     
-  # MiniMax - 新闻动态
   - name: MiniMax新闻动态
+    enabled: true
     url: https://www.minimaxi.com/news
     company: MiniMax
     category: AI Company
     parser: web_news
     update_frequency: daily
     
-  # 扣子Coze - 文档更新
   - name: 扣子Coze文档更新
+    enabled: true
     url: https://docs.coze.cn
     company: Coze (扣子)
     category: AI Tool
@@ -170,7 +213,7 @@ chinese_ai_companies:
 
 # 自定义RSS源 (可添加更多)
 custom_feeds:
-  - name: ""           # 源名称
-    url: ""            # RSS地址
-    category: ""       # 分类
+  - name: MMChat AI资讯
+    url: https://mmchat.zeabur.app/feeds/all.atom
+    category: AI News Aggregator
     enabled: true
