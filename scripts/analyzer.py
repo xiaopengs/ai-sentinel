@@ -194,7 +194,7 @@ class InfoAnalyzer:
         return False
     
     def _categorize(self, items):
-        """按类型分类"""
+        """按类型分类（自动去重）"""
         categories = {
             "papers": [],      # 学术论文
             "projects": [],    # 开源项目
@@ -202,6 +202,9 @@ class InfoAnalyzer:
             "news": [],        # 新闻动态
             "tweets": []       # 社交动态
         }
+        
+        # 去重跟踪：使用URL作为唯一标识
+        seen_urls = set()
         
         type_mapping = {
             "paper": "papers",
@@ -214,6 +217,17 @@ class InfoAnalyzer:
         for item in items:
             source_type = item.get("source_type", "")
             category = type_mapping.get(source_type, "news")
+            
+            # 使用URL去重，如果没有URL则用title+source_type组合
+            url = item.get("url") or item.get("hn_url") or item.get("pdf_url") or ""
+            dedup_key = f"{url}:{item.get('title', '')}"
+            
+            if url and dedup_key in seen_urls:
+                continue
+            
+            if url:
+                seen_urls.add(dedup_key)
+            
             categories[category].append(item)
         
         return categories
@@ -298,16 +312,35 @@ def load_raw_data(data_dir):
 
 
 if __name__ == "__main__":
-    # 测试代码
-    from pathlib import Path
+    import argparse
+    parser = argparse.ArgumentParser(description="AI前沿哨兵 - 信息分析工具")
+    parser.add_argument("--input", type=str, help="原始数据JSON文件路径")
+    parser.add_argument("--output", type=str, help="分析结果输出路径")
+    args = parser.parse_args()
     
     data_dir = Path(__file__).parent.parent / "output"
     
     # 加载原始数据
-    raw_data = load_raw_data(data_dir)
+    if args.input:
+        with open(args.input, 'r', encoding='utf-8') as f:
+            raw_data = json.load(f)
+    else:
+        raw_data = load_raw_data(data_dir)
+    
     if raw_data:
         analyzer = InfoAnalyzer({"keywords": ["AI", "LLM", "GPT"]})
         result = analyzer.analyze(raw_data)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        
+        # 保存结果
+        if args.output:
+            output_path = Path(args.output)
+        else:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_path = data_dir / f"analyzed_{timestamp}.json"
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        
+        print(f"✅ 分析完成，结果已保存到: {output_path}")
     else:
-        print("未找到原始数据文件")
+        print("❌ 未找到原始数据文件")

@@ -9,7 +9,7 @@
 {% for item in top_picks[:5] %}
 ### {{ loop.index }}. [{{ item.title }}]({{ item.url or item.hn_url or item.pdf_url or "#" }})
 
-**一句话摘要**：{{ item.summary or item.description or item.abstract[:150] if item.abstract else "暂无摘要" }}
+**一句话摘要**：{{ (item.summary or item.description or item.abstract or item.text or "暂无摘要")[:150] if (item.summary or item.description or item.abstract or item.text) else "暂无摘要" }}
 
 **为什么重要**：
 {% if item.stars %}- ⭐ 高热度开源项目（{{ item.stars }} stars）
