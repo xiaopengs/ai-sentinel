@@ -20,6 +20,7 @@ from parsers.arxiv import fetch_arxiv_papers
 from parsers.hackernews import fetch_hackernews
 from parsers.twitter_x import fetch_twitter
 from parsers.blog_rss import fetch_blog_rss
+from parsers.web_news import parse_web_news
 
 
 class DataCollector:
@@ -119,6 +120,8 @@ class DataCollector:
             items = fetch_twitter(source_config, self.settings.get("twitter", {}))
         elif source_name == "blogs":
             items = fetch_blog_rss(source_config)
+        elif source_name == "chinese_ai_companies":
+            items = parse_web_news({"chinese_ai_companies": source_config})
         else:
             print(f"    ⚠️  未知的源类型: {source_name}")
             return []

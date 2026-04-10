@@ -139,6 +139,35 @@ blogs:
       url: https://venturebeat.com/category/ai/feed/
       category: Tech Media
 
+# 中国AI公司官网新闻监控 (无RSS，使用网页解析)
+# 注意: 这些源需要使用topic_tracking技能或自定义解析器
+chinese_ai_companies:
+  enabled: true
+  
+  # 智谱GLM - 新品发布页
+  - name: 智谱AI新品发布
+    url: https://docs.bigmodel.cn/cn/update/new-releases
+    company: ZhipuAI (智谱)
+    category: AI Company
+    parser: web_news  # 使用网页新闻解析器
+    update_frequency: daily  # 每日检查更新
+    
+  # MiniMax - 新闻动态
+  - name: MiniMax新闻动态
+    url: https://www.minimaxi.com/news
+    company: MiniMax
+    category: AI Company
+    parser: web_news
+    update_frequency: daily
+    
+  # 扣子Coze - 文档更新
+  - name: 扣子Coze文档更新
+    url: https://docs.coze.cn
+    company: Coze (扣子)
+    category: AI Tool
+    parser: web_news
+    update_frequency: daily
+
 # 自定义RSS源 (可添加更多)
 custom_feeds:
   - name: ""           # 源名称
