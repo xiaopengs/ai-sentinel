@@ -1,5 +1,5 @@
 ---
-slug: ai-sentinel
+slug: ai-intelligence-sentinel
 name: AI前沿哨兵
 version: 1.1.0
 description: AI情报哨兵 - 自动采集、分析与报告AI领域最新动态的多源情报系统
