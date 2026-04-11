@@ -265,6 +265,8 @@ hackernews:
 
 ### Twitter/X
 
+#### 方法一：Twitter API（推荐）
+
 ```yaml
 twitter:
   enabled: true
@@ -274,6 +276,39 @@ twitter:
     - GPT
     - LLM
 ```
+
+**获取 Bearer Token 步骤：**
+
+1. 访问 [Twitter Developer Portal](https://developer.twitter.com)
+2. 注册开发者账号（需要审核，通常1-2天）
+3. 创建项目和应用
+4. 在应用设置中生成 Bearer Token
+5. 复制 Token 到 `config/settings.yaml` 或 WebUI 配置页
+
+**推荐的 AI 大咖账号：**
+- `@sama` - Sam Altman (OpenAI CEO)
+- `@ylecun` - Yann LeCun (Meta AI 首席科学家)
+- `@karpathy` - Andrej Karpathy (前OpenAI)
+- `@AndrewYNg` - Andrew Ng (DeepLearning.AI)
+
+#### 方法二：RSSHub（免费，无需审核）
+
+如果你不想申请 Twitter API，可以使用 RSSHub 自建实例：
+
+```yaml
+# 在 custom_feeds 中添加
+custom_feeds:
+  - name: "Sam Altman Twitter"
+    url: "https://你的RSSHub实例地址/twitter/user/sama"
+    category: social
+    enabled: true
+```
+
+**部署 RSSHub：**
+- 推荐使用 [Zeabur 一键部署](https://zeabur.com/templates/DI9BBD)
+- 或使用 Docker 本地部署
+
+> ⚠️ **注意**：Twitter 反爬严格，RSSHub Twitter 路由可能需要配置代理
 
 ### RSS 自定义源
 
@@ -319,6 +354,23 @@ ai-sentinel/
 ---
 
 ## ❓ 常见问题 (FAQ)
+
+### Q: 如何添加 Twitter 信息源？
+
+**方法一：使用 Twitter API（推荐）**
+
+1. 访问 [Twitter Developer Portal](https://developer.twitter.com)
+2. 创建开发者账号（需要审核，通常1-2天）
+3. 创建 App 并生成 Bearer Token
+4. 在 WebUI 的「配置」页面或 `config/settings.yaml` 填入 Token
+
+**方法二：使用 RSSHub（免费，无需审核）**
+
+1. 部署 RSSHub 实例（推荐 [Zeabur 一键部署](https://zeabur.com/templates/DI9BBD)）
+2. 在 WebUI 添加 RSS 源，格式：`https://你的实例地址/twitter/user/用户名`
+3. 例如追踪 Sam Altman：`https://your-rsshub.com/twitter/user/sama`
+
+> ⚠️ Twitter 反爬严格，RSSHub 方式可能需要配置代理
 
 ### Q: 如何获取 Twitter Bearer Token？
 
