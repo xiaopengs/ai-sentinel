@@ -1,7 +1,7 @@
 ---
 slug: ai-sentinel
 name: AI前沿哨兵
-version: 1.0.0
+version: 1.1.0
 description: AI情报哨兵 - 自动采集、分析与报告AI领域最新动态的多源情报系统
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
