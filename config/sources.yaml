@@ -217,3 +217,14 @@ custom_feeds:
     url: https://mmchat.zeabur.app/feeds/all.atom
     category: AI News Aggregator
     enabled: true
+    
+  # InfoQ技术媒体
+  - name: InfoQ全球
+    url: https://feed.infoq.com
+    category: Tech Media
+    enabled: true
+    
+  - name: InfoQ中文
+    url: https://www.infoq.cn/rss/
+    category: Tech Media (Chinese)
+    enabled: true
