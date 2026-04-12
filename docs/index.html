@@ -819,7 +819,7 @@
                                     <div class="platform-url">clawhub.ai/skills/ai-intelligence-sentinel</div>
                                 </div>
                             </div>
-                            <button class="copy-btn" onclick="copyText('https://clawhub.ai/skills/ai-intelligence-sentinel')">
+                            <button class="copy-btn" onclick="openLink('https://clawhub.ai/skills/ai-intelligence-sentinel')">
                                 🔗 打开
                             </button>
                         </div>
@@ -831,7 +831,7 @@
                                     <div class="platform-url">xiaping.coze.site</div>
                                 </div>
                             </div>
-                            <button class="copy-btn" onclick="copyText('https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2')">
+                            <button class="copy-btn" onclick="openLink('https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2')">
                                 🔗 打开
                             </button>
                         </div>
@@ -843,7 +843,7 @@
                                     <div class="platform-url">github.com/xiaopengs/ai-sentinel</div>
                                 </div>
                             </div>
-                            <button class="copy-btn" onclick="copyText('https://github.com/xiaopengs/ai-sentinel')">
+                            <button class="copy-btn" onclick="openLink('https://github.com/xiaopengs/ai-sentinel')">
                                 🔗 打开
                             </button>
                         </div>
@@ -1055,6 +1055,11 @@
             // Update content
             document.querySelectorAll('.install-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tab + '-install').classList.add('active');
+        }
+
+        // Open link function
+        function openLink(url) {
+            window.open(url, '_blank');
         }
 
         // Copy function - works on all browsers
