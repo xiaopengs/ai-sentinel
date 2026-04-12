@@ -245,26 +245,35 @@
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
             border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 12px;
-            padding: 24px;
+            padding: 28px;
             text-align: center;
         }
 
-        .chat-install-box p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 16px;
+        .chat-install-title {
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .chat-install-support {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 20px;
         }
 
         .chat-command {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px 20px;
+            border-radius: 10px;
+            padding: 16px 20px;
             font-family: 'SF Mono', Monaco, 'Courier New', monospace;
-            font-size: 16px;
+            font-size: 14px;
+            line-height: 1.6;
             color: var(--primary-light);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            text-align: left;
+            word-break: break-word;
         }
 
         /* ZIP Install */
@@ -737,9 +746,9 @@
                 <!-- Chat Install -->
                 <div id="chat-install" class="install-content active">
                     <div class="chat-install-box">
-                        <p>复制提示词，发送给任意 AI 助手即可安装 Skill</p>
-                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">支持：Lighthouse OpenClaw、WorkBuddy、QClaw、Kimi、Claude 等</p>
-                        <div class="chat-command">安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。</div>
+                        <div class="chat-install-title">复制提示词，发送给任意 AI 助手即可安装</div>
+                        <div class="chat-install-support">支持：OpenClaw、WorkBuddy、QClaw、Kimi、Claude 等</div>
+                        <div class="chat-command">安装 ClawHub 和技能<br><br>请先检查是否已安装 ClawHub 商店，若未安装，请执行：<br>npm i -g clawhub<br><br>然后安装 ai-intelligence-sentinel 技能。</div>
                         <button class="copy-btn" onclick="copyText('安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。')">
                             <span id="copyText-chat">📋 复制指令</span>
                         </button>
