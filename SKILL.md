@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 1.3.2
+version: 1.3.3
 description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
@@ -15,46 +15,103 @@ license: MIT
 
 ---
 
-## ⚠️ 重要：执行指南
+## ⚠️ 执行指南（重要）
 
-**收到用户请求后，请按以下步骤执行：**
+**收到用户请求后，按以下流程执行：**
 
-### Step 1: 确认技能路径
+### 方案选择
 
-```bash
-# 检查技能是否已安装
-ls -la .skills/ai-intelligence-sentinel/
-
-# 如果不存在，需要先安装技能
-npx clawhub@latest install ai-intelligence-sentinel
+```
+┌─────────────────────────────────────────────────────┐
+│  检测环境：pip 是否可用？                              │
+│  pip --version                                       │
+└───────────────────────┬─────────────────────────────┘
+                        │
+          ┌─────────────┴─────────────┐
+          ▼                           ▼
+    ✅ pip 可用                  ❌ pip 不可用
+          │                           │
+          ▼                           ▼
+   方案A: 原生脚本执行           方案B: API采集模式
+   （完整功能，推荐）            （无需依赖，降级方案）
 ```
 
-### Step 2: 安装依赖
+---
+
+### 方案A：原生脚本执行（推荐）
+
+**前置条件**：环境支持 pip 安装
 
 ```bash
+# Step 1: 确认技能已安装
+ls .skills/ai-intelligence-sentinel/ || npx clawhub@latest install ai-intelligence-sentinel
+
+# Step 2: 安装依赖
 cd .skills/ai-intelligence-sentinel
 pip install requests feedparser pyyaml jinja2 -q
-```
 
-### Step 3: 生成报告
-
-```bash
-# 🎯 推荐：一键生成完整报告
+# Step 3: 生成报告
 python scripts/reporter.py --type full
-```
 
-### Step 4: 返回报告给用户
-
-报告生成后，读取报告内容并返回给用户：
-```bash
-# 查看最新报告
+# Step 4: 返回报告
 cat reports/$(date +%Y-%m-%d)/full_report_*.md
 ```
 
-**⚠️ 注意事项：**
-- **直接运行Python脚本**，不要启动Web UI
-- 后台进程可能不稳定，推荐用 `--type full` 一次性完成
-- 报告路径格式：`reports/YYYY-MM-DD/full_report_HHMM.md`
+**优点**：17个数据源完整采集、本地处理速度快、报告格式精美
+
+---
+
+### 方案B：API采集模式（降级方案）
+
+**适用场景**：服务器缺少 pip / 环境受限 / 快速体验
+
+直接使用内置搜索能力，实时采集AI情报并生成报告：
+
+**采集数据源**：
+- 🔍 GitHub Trending → 搜索 "site:github.com AI trending"
+- 📄 arXiv论文 → 搜索 "site:arxiv.org AI machine learning"
+- 💬 HackerNews → 搜索 "site:news.ycombinator.com AI"
+- 📰 技术新闻 → 搜索 "OpenAI announcement" "DeepMind research"
+- 🏢 中国AI公司 → 搜索 "智谱AI MiniMax 扣子Coze 最新动态"
+
+**执行步骤**：
+1. 使用搜索工具分别采集上述数据源
+2. 整理成结构化报告（标题、链接、摘要、来源）
+3. 按重要性排序（P0重磅/P1重要/P2关注）
+4. 返回给用户
+
+**报告模板**：
+```markdown
+# AI情报报告 - YYYY-MM-DD
+
+## 🔥 今日头条 (P0)
+- [标题](链接) - 来源 | 摘要
+
+## 🚀 重磅发布 (P1)
+- [标题](链接) - 来源 | 摘要
+
+## 📰 值得关注 (P2)
+- [标题](链接) - 来源 | 摘要
+
+---
+📊 共收录 X 条情报
+```
+
+---
+
+### 环境修复建议
+
+如需恢复原生能力，可在目标机器执行：
+```bash
+# Debian/Ubuntu
+apt-get update && apt-get install -y python3-pip
+
+# CentOS/RHEL
+yum install -y python3-pip
+
+# macOS (已装Homebrew)
+brew install python3
+```
 
 ---
 
