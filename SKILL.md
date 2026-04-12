@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 1.3.4
+version: 1.3.5
 description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
@@ -97,7 +97,7 @@ cat reports/$(date +%Y-%m-%d)/full_report_*.md
 |------|------|
 | 📅 日期 | YYYY-MM-DD |
 | 📰 来源 | 来源名称 |
-| 💡 一句话摘要 | CEO能看懂的20字核心价值 |
+| 💡 一句话摘要 | CEO能看懂的70字核心价值 |
 | 📝 详细内容 | 完整描述（2-3句话） |
 
 > 🎯 **CEO决策参考**：对业务/行业的影响判断
@@ -138,7 +138,7 @@ cat reports/$(date +%Y-%m-%d)/full_report_*.md
 1. **每条情报必须包含**：
    - ✅ 明确日期（YYYY-MM-DD格式，不要"5天前"这种模糊表述）
    - ✅ 原文链接（必须是可点击的真实URL）
-   - ✅ 一句话摘要（20字内，CEO一眼能看懂价值）
+   - ✅ 一句话摘要（70字内，CEO一眼能看懂价值）
    - ✅ 来源名称（如：OpenAI Blog、Bloomberg、arXiv）
 
 2. **摘要写作原则**：
