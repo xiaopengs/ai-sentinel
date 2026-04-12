@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 1.2.0
+version: 1.3.0
 description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
@@ -35,15 +35,16 @@ license: MIT
 # 进入项目目录
 cd ai-sentinel
 
-# Step 1: 采集所有信息源
-python scripts/collect.py --all
+# 🎯 推荐：一键生成完整报告（自动采集+分析+生成）
+python scripts/reporter.py --type full
 
-# Step 2: 生成报告
-python scripts/reporter.py --type morning   # 晨报
-python scripts/reporter.py --type evening   # 晚报
+# 或者分步执行：
+python scripts/collect.py --all              # Step 1: 采集
+python scripts/reporter.py --type morning    # Step 2: 生成晨报
+python scripts/reporter.py --type evening    # Step 2: 生成晚报
 ```
 
-**报告输出位置**: `reports/YYYY-MM-DD/morning_report.md`
+**报告输出位置**: `reports/YYYY-MM-DD/full_report_HHMM.md`
 
 ---
 
@@ -51,6 +52,7 @@ python scripts/reporter.py --type evening   # 晚报
 
 | 用户需求 | 执行命令 |
 |----------|----------|
+| "生成完整报告" | `python scripts/reporter.py --type full` ⭐推荐 |
 | "采集AI情报" | `python scripts/collect.py --all` |
 | "生成晨报" | `python scripts/reporter.py --type morning` |
 | "生成晚报" | `python scripts/reporter.py --type evening` |
@@ -58,11 +60,19 @@ python scripts/reporter.py --type evening   # 晚报
 | "追踪最新论文" | `python scripts/collect.py --source arxiv` |
 | "查看HackerNews热点" | `python scripts/collect.py --source hackernews` |
 
+> 💡 **提示**: `--type full` 会自动执行采集→分析→生成完整流程，无需手动分步
+
 ---
 
 ## 📝 报告生成流程
 
-### 完整流程：采集 → 分析 → 生成
+### 方式一：一键生成完整报告（推荐）
+
+```bash
+python scripts/reporter.py --type full
+```
+
+自动执行完整流程：采集 → 分析 → 生成
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
@@ -71,14 +81,16 @@ python scripts/reporter.py --type evening   # 晚报
 └─────────────┘     └─────────────┘     └─────────────┘
      │                    │                    │
      ▼                    ▼                    ▼
- GitHub Trending      热度评分             晨报模板
- arXiv论文            新鲜度评分           晚报模板
- HackerNews           来源可信度           小红书风格
- RSS博客              质量评分             Markdown格式
- 中国AI公司                                精美排版
+ GitHub Trending      热度评分             完整报告
+ arXiv论文            新鲜度评分           (自动保存)
+ HackerNews           来源可信度
+ RSS博客              质量评分
+ 中国AI公司
 ```
 
-### Step 1: 数据采集
+### 方式二：分步执行
+
+#### Step 1: 数据采集
 
 采集多个信息源的原始数据，输出到 `output/raw_data_*.json`：
 
@@ -103,9 +115,18 @@ python scripts/collect.py --source hackernews # 仅HackerNews
 根据模板生成结构化报告：
 
 ```bash
-python scripts/reporter.py --type morning    # 晨报（重点事件）
-python scripts/reporter.py --type evening    # 晚报（完整汇总）
+python scripts/reporter.py --type full      # 完整报告（自动采集）
+python scripts/reporter.py --type morning   # 晨报（重点事件）
+python scripts/reporter.py --type evening   # 晚报（完整汇总）
 ```
+
+**报告类型对比**：
+
+| 类型 | 命令 | 说明 | 适用场景 |
+|------|------|------|----------|
+| **full** | `--type full` | 自动采集+分析+生成 | 立即获取最新情报 ⭐推荐 |
+| **morning** | `--type morning` | 仅生成晨报 | 早间定时任务 |
+| **evening** | `--type evening` | 仅生成晚报 | 晚间定时任务 |
 
 **报告结构**:
 - 📰 今日头条 (P0级事件)
@@ -250,6 +271,11 @@ custom_feeds:
 ---
 
 ## 🔄 更新日志
+
+**v1.3.0 (2026-04-12)**
+- ✨ 新增完整报告功能 (`--type full`)，一键采集+分析+生成
+- 优化报告生成流程，支持自动执行完整工作流
+- 更新文档，添加报告类型对比表
 
 **v1.2.0 (2026-04-12)**
 - 重构SKILL.md，优化文档结构

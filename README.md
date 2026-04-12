@@ -382,6 +382,13 @@ Contributions are welcome! Feel free to submit Issues or Pull Requests.
 
 ## 📝 Changelog
 
+### v1.3.0 (2026-04-12)
+
+**✨ New Feature**
+- Added full report generation (`--type full`) - one command to collect, analyze, and generate
+- Optimized report workflow with automatic execution
+- Added report type comparison table
+
 ### v1.2.0 (2026-04-12)
 
 **📝 Documentation**

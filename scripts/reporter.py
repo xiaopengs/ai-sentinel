@@ -421,12 +421,75 @@ DEFAULT_EVENING_TEMPLATE = """# 🌙 AI前沿哨兵 - {{ date_str }}晚报
 
 def main():
     parser = argparse.ArgumentParser(description="AI前沿哨兵 - 报告生成工具")
-    parser.add_argument("--type", type=str, default="morning", choices=["morning", "evening"],
-                        help="报告类型")
+    parser.add_argument("--type", type=str, default="morning", choices=["morning", "evening", "full"],
+                        help="报告类型: morning(晨报), evening(晚报), full(完整报告-自动采集)")
     parser.add_argument("--input", type=str, help="分析结果JSON文件路径")
     parser.add_argument("--output", type=str, help="输出文件路径")
     
     args = parser.parse_args()
+    
+    # 如果是full类型，先执行采集和分析
+    if args.type == "full":
+        print("🚀 执行完整报告生成流程...")
+        print("\n📋 Step 1: 采集所有信息源")
+        
+        # 导入collect模块
+        import sys
+        sys.path.insert(0, str(Path(__file__).parent))
+        from collect import DataCollector
+        
+        # 执行采集
+        collector = DataCollector()
+        collect_result = collector.collect_all()
+        
+        if not collect_result or collect_result.get("total_items", 0) == 0:
+            print("❌ 采集失败或无数据")
+            return
+        
+        print(f"✅ 采集完成: {collect_result.get('total_items', 0)} 条数据")
+        
+        # 执行分析
+        print("\n📊 Step 2: 智能分析数据")
+        from analyzer import DataAnalyzer
+        analyzer = DataAnalyzer()
+        
+        # 加载最新采集的数据
+        output_dir = Path(__file__).parent.parent / "output"
+        raw_files = list(output_dir.glob("raw_data_*.json"))
+        if raw_files:
+            latest_raw = max(raw_files, key=lambda f: f.stat().st_mtime)
+            with open(latest_raw, 'r', encoding='utf-8') as f:
+                raw_data = json.load(f)
+            analyzed_data = analyzer.analyze(raw_data)
+            print("✅ 分析完成")
+        else:
+            print("❌ 未找到采集数据")
+            return
+        
+        # 生成完整报告
+        print("\n📄 Step 3: 生成完整报告")
+        generator = ReportGenerator()
+        report = generator.generate(analyzed_data, "evening")  # 使用晚报模板生成完整报告
+        
+        # 保存报告
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        time_str = datetime.now().strftime("%H%M")
+        reports_dir = Path(__file__).parent.parent / "reports" / date_str
+        reports_dir.mkdir(parents=True, exist_ok=True)
+        
+        if args.output:
+            output_path = Path(args.output)
+        else:
+            output_path = reports_dir / f"full_report_{time_str}.md"
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(report)
+        
+        print(f"✅ 完整报告已保存到: {output_path}")
+        print(f"\n📈 报告统计:")
+        print(f"   - 总条目数: {analyzed_data.get('total_items', 0)}")
+        print(f"   - 分类数: {len(analyzed_data.get('categorized', {}))}")
+        return
     
     # 加载分析数据
     if args.input:
