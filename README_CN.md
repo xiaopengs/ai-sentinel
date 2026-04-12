@@ -30,6 +30,21 @@
 
 ## ⚡ 30秒快速开始
 
+### 方式一：对话安装（推荐）
+
+复制以下提示词，发送给任意AI助手（OpenClaw、WorkBuddy、QClaw、Kimi、Claude等）：
+
+```
+安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。
+```
+
+安装完成后，发送以下指令生成报告：
+```
+用AI哨兵技能生成今日AI情报报告
+```
+
+### 方式二：命令行安装
+
 ```bash
 # 安装依赖
 pip install requests feedparser pyyaml jinja2

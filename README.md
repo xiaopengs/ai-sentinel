@@ -30,6 +30,21 @@
 
 ## ⚡ Quick Start (30 Seconds)
 
+### Option 1: Chat Install (Recommended)
+
+Copy and send to any AI assistant (OpenClaw, WorkBuddy, QClaw, Kimi, Claude, etc.):
+
+```
+安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。
+```
+
+After installation, generate reports with:
+```
+用AI哨兵技能生成今日AI情报报告
+```
+
+### Option 2: Command Line
+
 ```bash
 # Install
 pip install requests feedparser pyyaml jinja2
