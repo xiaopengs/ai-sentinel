@@ -8,6 +8,8 @@
 
 🌐 **[Project Showcase](http://thinkspc.fun/static/sentinel/)** | **[中文文档](./README_CN.md)**
 
+📦 **Install:** `npx clawhub@latest install ai-intelligence-sentinel` | **[ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel)** | **[Xiaping](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2)**
+
 ---
 
 ## 🚀 Quick Start (1 Minute)
