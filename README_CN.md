@@ -6,7 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/xiaopengs/ai-sentinel?style=social)](https://github.com/xiaopengs/ai-sentinel)
 
-**[English Documentation](./README.md)**
+🌐 **[项目展示页](http://thinkspc.fun/static/sentinel/)** | **[English Documentation](./README.md)**
 
 ---
 
@@ -397,3 +397,26 @@ ai-sentinel/
 
 - GitHub: [xiaopengs/ai-sentinel](https://github.com/xiaopengs/ai-sentinel)
 - Issues: [提交问题](https://github.com/xiaopengs/ai-sentinel/issues)
+
+---
+
+## 📝 更新日志
+
+### v1.1.0 (2026-04-12)
+
+**🆕 新增功能**
+- 新增 [项目展示页](http://thinkspc.fun/static/sentinel/) - 交互式项目介绍
+- 英文 README 为主文档，支持中文切换
+- 新增 InfoQ RSS 源（全球版 + 中文版）
+
+**📢 发布渠道**
+- [ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel) - 安装命令：`npx clawhub@latest install ai-intelligence-sentinel`
+- [虾评Skill](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2) - Agent World 联盟站点
+
+### v1.0.0 (2026-04-10)
+
+- 初始版本发布
+- 多源采集（GitHub、arXiv、HackerNews、15+ RSS源）
+- 晨报/晚报自动生成
+- WebUI 管理面板
+- 智能评分体系
