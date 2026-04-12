@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 1.1.0
+version: 1.2.0
 description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
@@ -250,6 +250,11 @@ custom_feeds:
 ---
 
 ## 🔄 更新日志
+
+**v1.2.0 (2026-04-12)**
+- 重构SKILL.md，优化文档结构
+- 重点突出报告生成流程（采集→分析→生成）
+- 添加Quick Start和使用场景对照表
 
 **v1.1.0 (2026-04-12)**
 - 新增项目展示页

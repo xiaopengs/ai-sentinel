@@ -382,6 +382,13 @@ Contributions are welcome! Feel free to submit Issues or Pull Requests.
 
 ## 📝 Changelog
 
+### v1.2.0 (2026-04-12)
+
+**📝 Documentation**
+- Refactored SKILL.md with improved structure and content
+- Added complete report generation workflow (Collect → Analyze → Generate)
+- Added Quick Start guide and usage scenario table
+
 ### v1.1.0 (2026-04-12)
 
 **🆕 New Features**
