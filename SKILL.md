@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 1.3.1
+version: 1.3.2
 description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
@@ -12,6 +12,49 @@ license: MIT
 # AI前沿哨兵
 
 > 你的AI情报指挥中心。一键采集、智能分析、自动生成报告。
+
+---
+
+## ⚠️ 重要：执行指南
+
+**收到用户请求后，请按以下步骤执行：**
+
+### Step 1: 确认技能路径
+
+```bash
+# 检查技能是否已安装
+ls -la .skills/ai-intelligence-sentinel/
+
+# 如果不存在，需要先安装技能
+npx clawhub@latest install ai-intelligence-sentinel
+```
+
+### Step 2: 安装依赖
+
+```bash
+cd .skills/ai-intelligence-sentinel
+pip install requests feedparser pyyaml jinja2 -q
+```
+
+### Step 3: 生成报告
+
+```bash
+# 🎯 推荐：一键生成完整报告
+python scripts/reporter.py --type full
+```
+
+### Step 4: 返回报告给用户
+
+报告生成后，读取报告内容并返回给用户：
+```bash
+# 查看最新报告
+cat reports/$(date +%Y-%m-%d)/full_report_*.md
+```
+
+**⚠️ 注意事项：**
+- **直接运行Python脚本**，不要启动Web UI
+- 后台进程可能不稳定，推荐用 `--type full` 一次性完成
+- 报告路径格式：`reports/YYYY-MM-DD/full_report_HHMM.md`
 
 ---
 
