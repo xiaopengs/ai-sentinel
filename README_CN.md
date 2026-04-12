@@ -1,107 +1,47 @@
-# 🔭 AI前沿哨兵 (AI Sentinel)
+<div align="center">
 
-> 你的AI情报指挥中心，自动采集、分析与报告AI领域最新动态
+# 🔭 AI前沿哨兵
+
+**你的AI情报指挥中心**
+
+*自动采集、分析与报告AI领域最新动态*
+
+**一行命令追踪AI领域所有动态 — GitHub趋势、arXiv论文、技术新闻，一览无余。**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/xiaopengs/ai-sentinel?style=social)](https://github.com/xiaopengs/ai-sentinel)
 
-🌐 **[项目展示页](http://thinkspc.fun/static/sentinel/)** | **[English Documentation](./README.md)**
+🌐 [项目展示](http://thinkspc.fun/static/sentinel/) · 📦 [ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel) · 🇺🇸 [English](./README.md)
 
-📦 **安装:** `npx clawhub@latest install ai-intelligence-sentinel` | **[ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel)** | **[虾评Skill](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2)**
+</div>
 
 ---
 
-## 🚀 一分钟快速开始
+## 🎯 你能得到什么
+
+| 产品经理 | 开发者 | 企业高管 |
+|:---:|:---:|:---:|
+| 📊 每日AI行业报告自动送达 | 🔧 15+数据源一站式整合 | 📈 无需人工追踪AI动态 |
+| 🔍 比竞争对手更早发现热门项目 | 💻 CLI工具 + WebUI完全掌控 | 📋 每份报告都有执行摘要 |
+| ⏰ 晨报晚报准时推送 | 🛠️ 可自定义信息源和模板 | 🎯 仅展示高质量内容 |
+
+---
+
+## ⚡ 30秒快速开始
 
 ```bash
-# 1. 克隆项目
-git clone https://github.com/xiaopengs/ai-sentinel.git
-cd ai-sentinel
-
-# 2. 安装依赖
+# 安装依赖
 pip install requests feedparser pyyaml jinja2
 
-# 3. 创建输出目录
-mkdir -p output
-
-# 4. 运行采集（采集所有信息源）
-python scripts/collect.py --all
-
-# 5. 生成报告
-python scripts/reporter.py --type morning
+# 运行 — 立即生成一份完整的AI情报报告
+python scripts/reporter.py --type full
 ```
 
-> 💡 **提示**：使用 WebUI 可以更直观地管理信息源和查看报告
+**完成。** 你的第一份报告在 `reports/YYYY-MM-DD/full_report_*.md`
 
-```bash
-cd webui && python -m http.server 8080
-# 然后浏览器打开 http://localhost:8080
-```
-
----
-
-## 👤 适合谁用？
-
-| 人群 | 使用场景 |
-|------|----------|
-| **AI 研究者** | 追踪最新论文和开源项目，不错过重要研究进展 |
-| **开发者** | 发现热门AI项目和最佳实践，紧跟技术趋势 |
-| **投资人** | 了解AI行业最新动态，发现潜在投资机会 |
-| **产品经理** | 关注AI产品更新和行业新闻，启发产品灵感 |
-| **技术爱好者** | 保持对AI领域的了解，学习新技术 |
-
----
-
-## ✨ 功能特性
-
-### 🔍 多源信息采集
-
-| 信息源 | 说明 | 内置 |
-|--------|------|------|
-| **GitHub Trending** | 追踪AI开源项目热度，发现新兴项目 | ✅ |
-| **arXiv 论文** | 获取最新学术研究成果 | ✅ |
-| **HackerNews** | 捕捉开发者社区热点讨论 | ✅ |
-| **Twitter/X** | 追踪AI大咖和机构动态 (需配置API) | ✅ |
-| **RSS 订阅** | 支持任意博客/新闻源 | ✅ |
-| **官方博客** | Anthropic、OpenAI、Google AI、DeepMind等 | ✅ (快速模板) |
-
-### ⏰ 智能定时调度
-
-- **晨报** - 每天早8点推送，隔夜重要动态
-- **晚报** - 每天晚8点推送，全天热点汇总
-- **即时采集** - 手动触发，按需获取
-
-### 📊 智能分析评分
-
-- **热度评分** - 基于star、fork、评论数
-- **新鲜度权重** - 越新权重越高
-- **来源可信度** - 不同来源不同权重
-- **关键词匹配** - 自定义关注领域
-
-### 📄 自动化报告
-
-- 结构化 Markdown 格式
-- 分类清晰：论文、项目、讨论、新闻
-- 摘要+链接，可直接跳转阅读
-
-### 🎛️ WebUI 管理面板
-
-- 信息源配置与管理
-- 实时采集状态监控
-- 报告预览与导出
-- 设置调整即时生效
-
----
-
-## 📖 快速开始
-
-### 环境要求
-
-- Python 3.9+
-- 网络连接
-
-### 安装
+<details>
+<summary>📖 完整安装步骤</summary>
 
 ```bash
 # 克隆项目
@@ -111,328 +51,190 @@ cd ai-sentinel
 # 安装依赖
 pip install requests feedparser pyyaml jinja2
 
-# 创建输出目录
-mkdir -p output
+# 生成报告（自动采集 + 分析 + 生成）
+python scripts/reporter.py --type full
 ```
 
-### 基本使用
-
-#### 命令行采集
-
-```bash
-# 采集所有信息源
-python scripts/collect.py --all
-
-# 仅采集 GitHub
-python scripts/collect.py --source github
-
-# 仅采集 arXiv 论文
-python scripts/collect.py --source arxiv
-
-# 查看采集状态
-python scripts/collect.py --status
-```
-
-#### 生成报告
-
-```bash
-# 生成晨报
-python scripts/reporter.py --type morning
-
-# 生成晚报
-python scripts/reporter.py --type evening
-```
-
-#### 启动 WebUI
-
-```bash
-cd webui && python -m http.server 8080
-```
-
-然后在浏览器打开 `http://localhost:8080`
-
-#### 定时任务 (Linux/Mac)
-
-```bash
-# 编辑 crontab
-crontab -e
-
-# 添加以下内容
-0 8 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all && python scripts/reporter.py --type morning
-0 20 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all && python scripts/reporter.py --type evening
-```
+</details>
 
 ---
 
-## 🔗 如何添加信息源
+## ✨ 核心功能
 
-### 使用 WebUI 添加（推荐）
+<table>
+<tr>
+<td width="50%">
 
-1. 打开 WebUI，点击左侧菜单的 **「信息源」**
-2. 点击右上角的 **「添加信息源」** 按钮
-3. 你可以使用两种方式添加：
+### 🔍 多源采集
+- **GitHub Trending** — AI开源项目热度
+- **arXiv** — 最新论文 (cs.AI, cs.LG, cs.CL)
+- **HackerNews** — 开发者社区讨论
+- **15+ RSS源** — OpenAI、Anthropic、Google AI、DeepMind等
+- **中国AI公司** — 智谱AI、MiniMax、扣子Coze
 
-#### 方式一：快速添加（一键添加常用博客）
+</td>
+<td width="50%">
 
-在弹窗中的「快速添加」区域，我们提供常用的AI博客模板：
+### 📊 智能分析
+- **热度评分** — Stars、Forks、评论数
+- **新鲜度权重** — 越新排名越高
+- **来源可信度** — 官方博客 > 媒体 > 社区
+- **质量评分** — 内容深度与完整性
 
-| 博客 | 说明 |
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📄 自动化报告
+- **晨报** — 隔夜重点 (08:00)
+- **晚报** — 全天汇总 (20:00)
+- **完整报告** — 采集 + 分析 + 生成
+- **多种格式** — Markdown、小红书风格
+
+</td>
+<td width="50%">
+
+### 🎛️ 便捷管理
+- **WebUI** — 可视化配置面板
+- **CLI** — 完整命令行控制
+- **定时任务** — 设置后自动执行
+- **自定义模板** — 按需定制
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📋 使用方法
+
+### 常用命令速查
+
+| 需求 | 命令 |
 |------|------|
-| OpenAI 官方博客 | GPT模型更新、研究论文 |
-| Anthropic 官方博客 | Claude、 Constitutional AI |
-| Google AI Blog | Google在AI领域的研究 |
-| DeepMind 研究 | 前沿AI研究成果 |
-| Hugging Face Blog | 开源LLM和模型库动态 |
-| Machine Learning Mastery | 实用的机器学习教程 |
+| **立即生成完整报告** ⭐ | `python scripts/reporter.py --type full` |
+| 采集所有信息源 | `python scripts/collect.py --all` |
+| 生成晨报 | `python scripts/reporter.py --type morning` |
+| 生成晚报 | `python scripts/reporter.py --type evening` |
+| 仅追踪GitHub | `python scripts/collect.py --source github` |
+| 仅追踪arXiv论文 | `python scripts/collect.py --source arxiv` |
 
-点击「添加」按钮即可一键订阅！
+### 报告类型
 
-#### 方式二：手动添加自定义源
-
-如果想添加其他博客，需要获取该博客的 **RSS 订阅地址**：
-
-1. 打开目标博客网站
-2. 找页面底部的 **RSS** 或 **Feed** 图标
-3. 点击后复制浏览器地址栏的URL
-4. 回到 WebUI，填写：
-   - **名称**：博客的名字（如「机器之心」）
-   - **RSS订阅地址**：刚才复制的URL
-   - **描述**：简短描述（可选）
-
-### 命令行添加 RSS 源
-
-编辑 `config/sources.yaml`：
-
-```yaml
-custom_rss:
-  - name: "机器之心"
-    url: "https://feed.jiqizhixin.com/rss"
-    enabled: true
-  - name: "量子位"
-    url: "https://www.qbitai.com/feed"
-    enabled: true
-```
-
-### 常见博客 RSS 地址
-
-| 博客 | RSS 地址 |
-|------|----------|
-| 机器之心 | `https://feed.jiqizhixin.com/rss` |
-| 量子位 | `https://www.qbitai.com/feed` |
-| 知乎专栏-AI | `https://zhuanlan.zhihu.com/feed/` |
-| Medium-AI | `https://medium.com/feed/tag/artificial-intelligence` |
-| OpenAI Blog | `https://openai.com/blog/rss.xml` |
-| Anthropic Blog | `https://www.anthropic.com/news/rss` |
+| 类型 | 功能 | 适用场景 |
+|------|------|----------|
+| `--type full` | 采集 → 分析 → 生成 | 立即获取情报 ⭐ |
+| `--type morning` | 生成晨报 | 定时任务 |
+| `--type evening` | 生成晚报 | 定时任务 |
 
 ---
 
-## ⚙️ 信息源配置说明
+## 📰 信息源覆盖
 
-### GitHub
+| 类别 | 来源 | 覆盖范围 |
+|------|------|----------|
+| **开源项目** | GitHub Trending | AI/ML项目 |
+| **学术论文** | arXiv | cs.AI, cs.LG, cs.CL |
+| **社区讨论** | HackerNews | 开发者热点 |
+| **官方博客** | OpenAI、Anthropic、Google AI、DeepMind、HuggingFace、xAI、Cursor | 一手发布 |
+| **技术媒体** | InfoQ(全球/中文)、TechCrunch AI、VentureBeat AI | 行业动态 |
+| **中国AI** | 智谱AI、MiniMax、扣子Coze | 国产进展 |
 
-```yaml
-github:
-  enabled: true
-  language: python        # 编程语言
-  date_range: weekly      # daily/weekly/monthly
-  limit: 20
-  keywords:              # 可选关键词过滤
-    - AI
-    - machine-learning
-    - LLM
-```
+---
 
-### arXiv
+## 📊 报告示例
 
-```yaml
-arxiv:
-  enabled: true
-  categories:            # 论文分类
-    - cs.AI              # Artificial Intelligence
-    - cs.LG              # Machine Learning
-    - cs.CL              # Computation and Language
-  max_results: 20
-```
+**2026-04-12 晚报**
 
-### HackerNews
+```markdown
+📰 今日头条 (P0)
 
-```yaml
-hackernews:
-  enabled: true
-  item_type: top         # top/new/best/ask/show
-  limit: 20
-  keywords:              # AI相关关键词过滤
-    - AI
-    - machine learning
-    - LLM
-```
+### GPT-6定档4月14日 — 200万Token上下文
+OpenAI确认发布GPT-6，支持200万tokens上下文窗口...
 
-### Twitter/X
+### DeepSeek V4定档4月下旬 — 万亿参数
+首个完全适配国产芯片的大模型...
 
-```yaml
-twitter:
-  enabled: true
-  bearer_token: "your-twitter-bearer-token"  # 必需
-  keywords:              # 关注关键词
-    - AI
-    - GPT
-    - LLM
-```
+🚀 重磅发布 (P1)
+• 字节Seeduplex — 全双工语音模型
+• 智谱GLM-5.1开源 — 最强开源模型
+• Meta Muse Spark — 143亿美元投入，转向闭源
 
-**获取 Bearer Token 步骤：**
-
-1. 访问 [Twitter Developer Portal](https://developer.twitter.com)
-2. 注册开发者账号（需要审核，通常1-2天）
-3. 创建项目和应用
-4. 在应用设置中生成 Bearer Token
-5. 复制 Token 到 `config/settings.yaml` 或 WebUI 配置页
-
-**推荐的 AI 大咖账号：**
-- `@sama` - Sam Altman (OpenAI CEO)
-- `@ylecun` - Yann LeCun (Meta AI 首席科学家)
-- `@karpathy` - Andrej Karpathy (前OpenAI)
-- `@AndrewYNg` - Andrew Ng (DeepLearning.AI)
-
-### RSS 自定义源
-
-```yaml
-rss:
-  enabled: true
-  sources:
-    - name: "OpenAI Blog"
-      url: "https://openai.com/blog/rss.xml"
-      update_interval: 3600    # 更新间隔（秒）
+📊 统计：收录23条 · 重磅3条
 ```
 
 ---
 
-## 📁 项目结构
+## 🏗️ 项目结构
 
 ```
 ai-sentinel/
-├── config/                 # 配置文件目录
+├── scripts/
+│   ├── collect.py          # 数据采集
+│   ├── reporter.py         # 报告生成
+│   └── parsers/            # 信息源解析器
+├── config/
 │   ├── sources.yaml        # 信息源配置
-│   ├── settings.yaml       # 系统设置
-│   └── schedule.yaml       # 定时任务配置
-├── scripts/                # 脚本目录
-│   ├── collect.py          # 主采集脚本
-│   ├── reporter.py         # 报告生成脚本
-│   └── parsers/            # 各信息源解析器
-│       ├── github_trending.py
-│       ├── arxiv.py
-│       ├── hackernews.py
-│       ├── twitter_x.py
-│       └── blog_rss.py
+│   └── schedule.yaml       # 调度配置
 ├── templates/              # 报告模板
-├── webui/                  # Web 管理界面
-│   ├── index.html         # 主页面
-│   ├── app.js             # 前端逻辑
-│   └── style.css          # 样式文件
-├── output/                 # 采集结果输出目录
-├── SKILL.md                # 详细技术文档
-├── LICENSE                 # MIT License
-└── README.md               # 本文档
+├── webui/                  # Web管理界面
+└── reports/                # 生成的报告
 ```
 
 ---
 
-## ❓ 常见问题 (FAQ)
-
-### Q: 如何添加 Twitter 信息源？
-
-1. 访问 [Twitter Developer Portal](https://developer.twitter.com)
-2. 创建开发者账号（需要审核，通常1-2天）
-3. 创建 App 并生成 Bearer Token
-4. 在 WebUI 的「配置」页面或 `config/settings.yaml` 填入 Token
-
-> ⚠️ 需要Twitter开发者账号，审核通过后即可使用
-
-### Q: 如何获取 Twitter Bearer Token？
-
-1. 访问 [Twitter Developer Portal](https://developer.twitter.com)
-2. 创建一个开发者账号（需要审核）
-3. 创建 App 并申请 Bearer Token
-4. 在 WebUI 的「配置」页面填入 Token
-
-> ⚠️ 注意：Twitter API 有访问限制和配额，请合理使用
-
-### Q: RSS 订阅不生效怎么办？
-
-1. 确认 RSS 地址正确（可以在浏览器直接访问测试）
-2. 有些网站使用 Atom 格式，尝试 `/atom.xml` 或 `/feed/atom`
-3. 检查是否需要认证
-
-### Q: 采集的数据在哪里？
-
-- **原始数据**：`output/raw_data_YYYYMMDD_HHMMSS.json`
-- **处理后数据**：`output/processed_data.json`
-- **报告文件**：`output/reports/morning_YYYYMMDD.md` 或 `evening_`
-
-### Q: 如何自定义报告模板？
-
-编辑 `templates/report_template.md`，使用 Jinja2 语法。
-
-### Q: 采集频率怎么调整？
-
-修改定时任务或使用 crontab：
+## 📦 一键安装
 
 ```bash
-# 每6小时采集一次
-0 */6 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all
+npx clawhub@latest install ai-intelligence-sentinel
 ```
+
+---
+
+## 🔗 相关链接
+
+| 资源 | 链接 |
+|------|------|
+| 📚 技术文档 | [README.md](./README.md) |
+| 🌐 项目展示 | [thinkspc.fun/static/sentinel](http://thinkspc.fun/static/sentinel/) |
+| 📦 ClawHub | [clawhub.ai/skills/ai-intelligence-sentinel](https://clawhub.ai/skills/ai-intelligence-sentinel) |
+| 🦐 虾评Skill | [xiaping.coze.site](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2) |
+| 💻 GitHub | [xiaopengs/ai-sentinel](https://github.com/xiaopengs/ai-sentinel) |
+
+---
+
+## 🤝 参与贡献
+
+欢迎贡献代码、提出问题或建议！
 
 ---
 
 ## 📄 许可证
 
-本项目基于 MIT 许可证开源，详见 [LICENSE](LICENSE) 文件。
-
----
-
-## 🤝 贡献指南
-
-欢迎贡献代码、提出问题或建议！请随时提交 Issue 或 Pull Request。
-
----
-
-## 📮 联系方式
-
-- GitHub: [xiaopengs/ai-sentinel](https://github.com/xiaopengs/ai-sentinel)
-- Issues: [提交问题](https://github.com/xiaopengs/ai-sentinel/issues)
+MIT License — 自由使用于任何项目。
 
 ---
 
 ## 📝 更新日志
 
 ### v1.3.0 (2026-04-12)
-
-**✨ 新增功能**
-- 新增完整报告功能 (`--type full`)，一键采集+分析+生成
-- 优化报告生成流程，支持自动执行完整工作流
-- 添加报告类型对比表
+- ✨ 新增 `--type full` 一键生成完整报告
+- 优化报告生成流程
 
 ### v1.2.0 (2026-04-12)
-
-**📝 文档优化**
-- 重构SKILL.md，优化文档结构
-- 添加完整的报告生成流程（采集→分析→生成）
-- 添加Quick Start和使用场景对照表
-
-### v1.1.0 (2026-04-12)
-
-**🆕 新增功能**
-- 新增 [项目展示页](http://thinkspc.fun/static/sentinel/) - 交互式项目介绍
-- 英文 README 为主文档，支持中文切换
-- 新增 InfoQ RSS 源（全球版 + 中文版）
-
-**📢 发布渠道**
-- [ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel) - 安装命令：`npx clawhub@latest install ai-intelligence-sentinel`
-- [虾评Skill](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2) - Agent World 联盟站点
+- 📝 重构文档
+- 添加项目展示页
 
 ### v1.0.0 (2026-04-10)
+- 🎉 初始发布
 
-- 初始版本发布
-- 多源采集（GitHub、arXiv、HackerNews、15+ RSS源）
-- 晨报/晚报自动生成
-- WebUI 管理面板
-- 智能评分体系
+---
+
+<div align="center">
+
+**为需要紧跟AI前沿的从业者打造。**
+
+⭐ 觉得有用就点个Star吧！
+
+</div>

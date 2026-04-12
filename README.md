@@ -1,107 +1,47 @@
+<div align="center">
+
 # 🔭 AI Sentinel
 
-> Your AI Intelligence Command Center - Automatically collect, analyze, and report the latest AI developments
+**Your AI Intelligence Command Center**
+
+*Automatically collect, analyze, and report the latest AI developments*
+
+**One command to track everything happening in AI — GitHub trends, arXiv papers, tech news, and more.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/xiaopengs/ai-sentinel?style=social)](https://github.com/xiaopengs/ai-sentinel)
 
-🌐 **[Project Showcase](http://thinkspc.fun/static/sentinel/)** | **[中文文档](./README_CN.md)**
+🌐 [Project Showcase](http://thinkspc.fun/static/sentinel/) · 📦 [ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel) · 🇨🇳 [中文文档](./README_CN.md)
 
-📦 **Install:** `npx clawhub@latest install ai-intelligence-sentinel` | **[ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel)** | **[Xiaping](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2)**
+</div>
 
 ---
 
-## 🚀 Quick Start (1 Minute)
+## 🎯 What You Get
+
+| For Product Managers | For Developers | For Executives |
+|:---:|:---:|:---:|
+| 📊 Daily AI industry reports delivered automatically | 🔧 15+ data sources in one place | 📈 Track AI landscape without manual effort |
+| 🔍 Discover trending projects before competitors | 💻 CLI tools + WebUI for full control | 📋 Executive summary in every report |
+| ⏰ Morning & evening reports on schedule | 🛠️ Customizable sources & templates | 🎯 Quality-scored content only |
+
+---
+
+## ⚡ Quick Start (30 Seconds)
 
 ```bash
-# 1. Clone the project
-git clone https://github.com/xiaopengs/ai-sentinel.git
-cd ai-sentinel
-
-# 2. Install dependencies
+# Install
 pip install requests feedparser pyyaml jinja2
 
-# 3. Create output directory
-mkdir -p output
-
-# 4. Collect from all sources
-python scripts/collect.py --all
-
-# 5. Generate report
-python scripts/reporter.py --type morning
+# Run - Generate a complete AI report now
+python scripts/reporter.py --type full
 ```
 
-> 💡 **Tip**: Use WebUI for easier source management
+**That's it.** Your first report is at `reports/YYYY-MM-DD/full_report_*.md`
 
-```bash
-cd webui && python -m http.server 8080
-# Then open http://localhost:8080 in your browser
-```
-
----
-
-## 👤 Who Is This For?
-
-| Audience | Use Case |
-|----------|----------|
-| **AI Researchers** | Track latest papers and open-source projects |
-| **Developers** | Discover trending AI projects and best practices |
-| **Investors** | Stay updated on AI industry dynamics and opportunities |
-| **Product Managers** | Monitor AI product updates and industry news |
-| **Tech Enthusiasts** | Keep up with AI field developments |
-
----
-
-## ✨ Features
-
-### 🔍 Multi-Source Collection
-
-| Source | Description | Built-in |
-|--------|-------------|----------|
-| **GitHub Trending** | Track AI open-source project trends | ✅ |
-| **arXiv Papers** | Get latest academic research | ✅ |
-| **HackerNews** | Capture developer community discussions | ✅ |
-| **Twitter/X** | Follow AI thought leaders (API required) | ✅ |
-| **RSS Feeds** | Support any blog/news source | ✅ |
-| **Official Blogs** | Anthropic, OpenAI, Google AI, DeepMind, etc. | ✅ (Quick templates) |
-
-### ⏰ Smart Scheduling
-
-- **Morning Report** - 8:00 AM daily, overnight highlights
-- **Evening Report** - 8:00 PM daily, full-day summary
-- **On-Demand Collection** - Manual trigger as needed
-
-### 📊 Intelligent Analysis & Scoring
-
-- **Popularity Score** - Based on stars, forks, comments
-- **Freshness Weight** - Newer items rank higher
-- **Source Credibility** - Different weights for different sources
-- **Keyword Matching** - Custom focus areas
-
-### 📄 Automated Reports
-
-- Structured Markdown format
-- Clear categorization: Papers, Projects, Discussions, News
-- Summary + links for direct access
-
-### 🎛️ WebUI Management Panel
-
-- Source configuration and management
-- Real-time collection status monitoring
-- Report preview and export
-- Instant settings updates
-
----
-
-## 📖 Getting Started
-
-### Requirements
-
-- Python 3.9+
-- Network connection
-
-### Installation
+<details>
+<summary>📖 Full Installation</summary>
 
 ```bash
 # Clone the project
@@ -111,306 +51,190 @@ cd ai-sentinel
 # Install dependencies
 pip install requests feedparser pyyaml jinja2
 
-# Create output directory
-mkdir -p output
+# Generate report (collects + analyzes + generates)
+python scripts/reporter.py --type full
 ```
 
-### Basic Usage
+</details>
 
-#### Command Line Collection
+---
 
-```bash
-# Collect from all sources
-python scripts/collect.py --all
+## ✨ Core Features
 
-# Collect from GitHub only
-python scripts/collect.py --source github
+<table>
+<tr>
+<td width="50%">
 
-# Collect arXiv papers only
-python scripts/collect.py --source arxiv
+### 🔍 Multi-Source Collection
+- **GitHub Trending** — AI open-source projects
+- **arXiv** — Latest papers (cs.AI, cs.LG, cs.CL)
+- **HackerNews** — Developer discussions
+- **15+ RSS Feeds** — OpenAI, Anthropic, Google AI, DeepMind, etc.
+- **Chinese AI Companies** — 智谱AI, MiniMax, Coze
 
-# Check collection status
-python scripts/collect.py --status
-```
+</td>
+<td width="50%">
 
-#### Generate Reports
+### 📊 Intelligent Analysis
+- **Popularity Score** — Stars, forks, comments
+- **Freshness Weight** — Newer = higher rank
+- **Source Credibility** — Official blogs > Media > Community
+- **Quality Scoring** — Content depth & completeness
 
-```bash
-# Generate morning report
-python scripts/reporter.py --type morning
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-# Generate evening report
-python scripts/reporter.py --type evening
-```
+### 📄 Automated Reports
+- **Morning Report** — Overnight highlights (8:00 AM)
+- **Evening Report** — Full-day summary (8:00 PM)
+- **Full Report** — Complete collection + analysis
+- **Multiple Formats** — Markdown, Xiaohongshu style
 
-#### Start WebUI
+</td>
+<td width="50%">
 
-```bash
-cd webui && python -m http.server 8080
-```
+### 🎛️ Easy Management
+- **WebUI** — Visual configuration panel
+- **CLI** — Full command-line control
+- **Scheduled Tasks** — Set and forget
+- **Custom Templates** — Tailor to your needs
 
-Then open `http://localhost:8080` in your browser.
+</td>
+</tr>
+</table>
 
-#### Scheduled Tasks (Linux/Mac)
+---
 
-```bash
-# Edit crontab
-crontab -e
+## 📋 Usage
 
-# Add the following
-0 8 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all && python scripts/reporter.py --type morning
-0 20 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all && python scripts/reporter.py --type evening
+### Most Common Commands
+
+| What You Want | Command |
+|---------------|---------|
+| **Generate complete report now** ⭐ | `python scripts/reporter.py --type full` |
+| Collect from all sources | `python scripts/collect.py --all` |
+| Generate morning report | `python scripts/reporter.py --type morning` |
+| Generate evening report | `python scripts/reporter.py --type evening` |
+| Track GitHub only | `python scripts/collect.py --source github` |
+| Track arXiv papers | `python scripts/collect.py --source arxiv` |
+
+### Report Types
+
+| Type | What It Does | Best For |
+|------|--------------|----------|
+| `--type full` | Collect → Analyze → Generate | Immediate insights ⭐ |
+| `--type morning` | Generate morning report | Scheduled tasks |
+| `--type evening` | Generate evening report | Scheduled tasks |
+
+---
+
+## 📰 Information Sources
+
+| Category | Sources | Coverage |
+|----------|---------|----------|
+| **Open Source** | GitHub Trending | AI/ML projects |
+| **Academic** | arXiv | cs.AI, cs.LG, cs.CL |
+| **Community** | HackerNews | Developer discussions |
+| **Official Blogs** | OpenAI, Anthropic, Google AI, DeepMind, HuggingFace, xAI, Cursor | First-party announcements |
+| **Tech Media** | InfoQ (Global/CN), TechCrunch AI, VentureBeat AI | Industry news |
+| **Chinese AI** | 智谱AI, MiniMax, 扣子Coze | Domestic developments |
+
+---
+
+## 📊 Sample Report
+
+**2026-04-12 Evening Report**
+
+```markdown
+📰 Today's Headlines (P0)
+
+### GPT-6 Announced for April 14 — 2M Token Context
+OpenAI confirms GPT-6 release with 200万 tokens context window...
+
+### DeepSeek V4 Scheduled for Late April — Trillion Parameters
+First Chinese model to fully adapt to domestic chips...
+
+🚀 Major Releases (P1)
+• ByteDance Seeduplex — Full-duplex voice model
+• Zhipu GLM-5.1 Open Source — Strongest open-source model
+• Meta Muse Spark — $14.3B investment, going closed-source
+
+📊 Stats: 23 items collected · 3 major announcements
 ```
 
 ---
 
-## 🔗 How to Add Information Sources
-
-### Using WebUI (Recommended)
-
-1. Open WebUI and click **"Sources"** in the left menu
-2. Click **"Add Source"** button in the top right
-3. Two ways to add:
-
-#### Method 1: Quick Add (One-click for common blogs)
-
-In the popup's "Quick Add" section, we provide templates for popular AI blogs:
-
-| Blog | Description |
-|------|-------------|
-| OpenAI Blog | GPT model updates, research papers |
-| Anthropic Blog | Claude, Constitutional AI |
-| Google AI Blog | Google's AI research |
-| DeepMind Research | Cutting-edge AI research |
-| Hugging Face Blog | Open-source LLM and model hub updates |
-| Machine Learning Mastery | Practical ML tutorials |
-
-Click "Add" to subscribe instantly!
-
-#### Method 2: Manual Add for Custom Sources
-
-To add other blogs, you need the **RSS feed URL**:
-
-1. Open the target blog website
-2. Find the **RSS** or **Feed** icon at the bottom
-3. Click and copy the URL from browser address bar
-4. Return to WebUI and fill in:
-   - **Name**: Blog name (e.g., "AI News")
-   - **RSS Feed URL**: The URL you copied
-   - **Description**: Brief description (optional)
-
-### Command Line RSS Source Addition
-
-Edit `config/sources.yaml`:
-
-```yaml
-custom_rss:
-  - name: "AI News"
-    url: "https://example.com/feed"
-    enabled: true
-```
-
-### Common Blog RSS URLs
-
-| Blog | RSS URL |
-|------|---------|
-| OpenAI Blog | `https://openai.com/blog/rss.xml` |
-| Anthropic Blog | `https://www.anthropic.com/news/rss` |
-| Google AI Blog | `https://research.google/blog/rss` |
-| DeepMind | `https://deepmind.google/blog/rss.xml` |
-| Hugging Face | `https://huggingface.co/blog/feed.xml` |
-| InfoQ Global | `https://feed.infoq.com` |
-| InfoQ Chinese | `https://www.infoq.cn/rss/` |
-
----
-
-## ⚙️ Source Configuration
-
-### GitHub
-
-```yaml
-github:
-  enabled: true
-  language: python        # Programming language
-  date_range: weekly      # daily/weekly/monthly
-  limit: 20
-  keywords:              # Optional keyword filtering
-    - AI
-    - machine-learning
-    - LLM
-```
-
-### arXiv
-
-```yaml
-arxiv:
-  enabled: true
-  categories:            # Paper categories
-    - cs.AI              # Artificial Intelligence
-    - cs.LG              # Machine Learning
-    - cs.CL              # Computation and Language
-  max_results: 20
-```
-
-### HackerNews
-
-```yaml
-hackernews:
-  enabled: true
-  item_type: top         # top/new/best/ask/show
-  limit: 20
-  keywords:              # AI-related keyword filtering
-    - AI
-    - machine learning
-    - LLM
-```
-
-### Twitter/X
-
-```yaml
-twitter:
-  enabled: true
-  bearer_token: "your-twitter-bearer-token"  # Required
-  keywords:              # Keywords to follow
-    - AI
-    - GPT
-    - LLM
-```
-
-**How to Get Bearer Token:**
-
-1. Visit [Twitter Developer Portal](https://developer.twitter.com)
-2. Register a developer account (requires review, usually 1-2 days)
-3. Create a project and app
-4. Generate Bearer Token in app settings
-5. Copy the token to `config/settings.yaml` or WebUI config page
-
-**Recommended AI Thought Leaders:**
-- `@sama` - Sam Altman (OpenAI CEO)
-- `@ylecun` - Yann LeCun (Meta AI Chief Scientist)
-- `@karpathy` - Andrej Karpathy (ex-OpenAI)
-- `@AndrewYNg` - Andrew Ng (DeepLearning.AI)
-
----
-
-## 📁 Project Structure
+## 🏗️ Project Structure
 
 ```
 ai-sentinel/
-├── config/                 # Configuration files
-│   ├── sources.yaml        # Source configuration
-│   ├── settings.yaml       # System settings
-│   └── schedule.yaml       # Scheduled task config
-├── scripts/                # Scripts
-│   ├── collect.py          # Main collection script
-│   ├── reporter.py         # Report generation script
+├── scripts/
+│   ├── collect.py          # Data collection
+│   ├── reporter.py         # Report generation
 │   └── parsers/            # Source parsers
-│       ├── github_trending.py
-│       ├── arxiv.py
-│       ├── hackernews.py
-│       ├── twitter_x.py
-│       └── blog_rss.py
+├── config/
+│   ├── sources.yaml        # Source configuration
+│   └── schedule.yaml       # Scheduling config
 ├── templates/              # Report templates
-├── webui/                  # Web management interface
-│   ├── index.html         # Main page
-│   ├── app.js             # Frontend logic
-│   └── style.css          # Styles
-├── output/                 # Collection output
-├── SKILL.md                # Technical documentation
-├── LICENSE                 # MIT License
-└── README.md               # This document
+├── webui/                  # Web management panel
+└── reports/                # Generated reports
 ```
 
 ---
 
-## ❓ FAQ
-
-### Q: How to add Twitter source?
-
-1. Visit [Twitter Developer Portal](https://developer.twitter.com)
-2. Create a developer account (requires review, usually 1-2 days)
-3. Create an App and generate Bearer Token
-4. Enter the token in WebUI's "Config" page or `config/settings.yaml`
-
-> ⚠️ Requires Twitter developer account, available after approval
-
-### Q: RSS subscription not working?
-
-1. Verify the RSS URL is correct (test by visiting directly in browser)
-2. Some sites use Atom format, try `/atom.xml` or `/feed/atom`
-3. Check if authentication is required
-
-### Q: Where is the collected data?
-
-- **Raw data**: `output/raw_data_YYYYMMDD_HHMMSS.json`
-- **Processed data**: `output/processed_data.json`
-- **Reports**: `output/reports/morning_YYYYMMDD.md` or `evening_`
-
-### Q: How to customize report templates?
-
-Edit `templates/report_template.md` using Jinja2 syntax.
-
-### Q: How to adjust collection frequency?
-
-Modify scheduled tasks or use crontab:
+## 📦 Install from ClawHub
 
 ```bash
-# Collect every 6 hours
-0 */6 * * * cd /path/to/ai-sentinel && python scripts/collect.py --all
+npx clawhub@latest install ai-intelligence-sentinel
 ```
 
 ---
 
-## 📄 License
+## 🔗 Links
 
-This project is open-sourced under the MIT License. See [LICENSE](LICENSE) for details.
+| Resource | Link |
+|----------|------|
+| 📚 Documentation | [README_CN.md](./README_CN.md) |
+| 🌐 Project Showcase | [thinkspc.fun/static/sentinel](http://thinkspc.fun/static/sentinel/) |
+| 📦 ClawHub | [clawhub.ai/skills/ai-intelligence-sentinel](https://clawhub.ai/skills/ai-intelligence-sentinel) |
+| 🦐 Xiaping Skill | [xiaping.coze.site](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2) |
+| 💻 GitHub | [xiaopengs/ai-sentinel](https://github.com/xiaopengs/ai-sentinel) |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to submit Issues or Pull Requests.
+Contributions welcome! Feel free to submit Issues or Pull Requests.
 
 ---
 
-## 📮 Contact
+## 📄 License
 
-- GitHub: [xiaopengs/ai-sentinel](https://github.com/xiaopengs/ai-sentinel)
-- Issues: [Submit an issue](https://github.com/xiaopengs/ai-sentinel/issues)
+MIT License — use it freely in your projects.
 
 ---
 
 ## 📝 Changelog
 
 ### v1.3.0 (2026-04-12)
-
-**✨ New Feature**
-- Added full report generation (`--type full`) - one command to collect, analyze, and generate
-- Optimized report workflow with automatic execution
-- Added report type comparison table
+- ✨ Added `--type full` for one-command complete report
+- Optimized report workflow
 
 ### v1.2.0 (2026-04-12)
-
-**📝 Documentation**
-- Refactored SKILL.md with improved structure and content
-- Added complete report generation workflow (Collect → Analyze → Generate)
-- Added Quick Start guide and usage scenario table
-
-### v1.1.0 (2026-04-12)
-
-**🆕 New Features**
-- Added [Project Showcase](http://thinkspc.fun/static/sentinel/) - Interactive project introduction page
-- English README as primary documentation with Chinese version support
-- InfoQ RSS sources (Global + Chinese)
-
-**📢 Published to**
-- [ClawHub](https://clawhub.ai/skills/ai-intelligence-sentinel) - Install: `npx clawhub@latest install ai-intelligence-sentinel`
-- [Xiaping Skill](https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2) - Agent World Alliance
+- 📝 Refactored documentation
+- Added project showcase
 
 ### v1.0.0 (2026-04-10)
+- 🎉 Initial release
 
-- Initial release
-- Multi-source collection (GitHub, arXiv, HackerNews, 15+ RSS feeds)
-- Morning & evening report generation
-- WebUI management panel
-- Intelligent scoring system
+---
+
+<div align="center">
+
+**Built for AI practitioners who need to stay ahead.**
+
+⭐ Star this repo if you find it useful!
+
+</div>
