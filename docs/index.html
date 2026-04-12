@@ -350,6 +350,48 @@
             color: var(--primary-light);
         }
 
+        /* Usage Section */
+        .usage-section {
+            margin-top: 48px;
+            padding: 28px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            animation: fadeInUp 0.6s ease-out 0.5s both;
+        }
+
+        .usage-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .usage-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .usage-command {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--primary-light);
+        }
+
+        .usage-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
         /* Section */
         .section {
             padding: 120px 0;
@@ -818,6 +860,18 @@
                 <span class="tag">开源项目</span>
                 <span class="tag">晨报</span>
                 <span class="tag">晚报</span>
+            </div>
+
+            <!-- Usage Section -->
+            <div class="usage-section">
+                <div class="usage-title">🚀 使用方法</div>
+                <div class="usage-box">
+                    <div class="usage-command">用AI哨兵技能生成今日AI情报报告</div>
+                    <button class="copy-btn" onclick="copyText('用AI哨兵技能生成今日AI情报报告')">
+                        <span>📋 复制</span>
+                    </button>
+                </div>
+                <div class="usage-note">安装后，发送此指令给你的 Agent，自动采集并生成完整报告</div>
             </div>
         </div>
     </section>
