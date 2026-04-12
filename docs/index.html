@@ -18,6 +18,7 @@
             --primary: #3b82f6;
             --primary-light: #60a5fa;
             --accent: #8b5cf6;
+            --success: #10b981;
             --bg-dark: #0a0a0f;
             --bg-card: #111118;
             --bg-card-hover: #1a1a24;
@@ -128,54 +129,191 @@
             font-weight: 600;
         }
 
-        /* Install Command */
-        .install-command {
+        /* Install Section */
+        .install-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 24px;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 700px;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .install-tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+
+        .install-tab {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.6s ease-out 0.3s both;
-            transition: all 0.3s ease;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .install-command:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        .install-tab:hover {
+            color: var(--text-primary);
         }
 
-        .install-command code {
+        .install-tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .install-content {
+            display: none;
+        }
+
+        .install-content.active {
+            display: block;
+        }
+
+        .install-command-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .install-command-box code {
             font-family: 'SF Mono', Monaco, 'Courier New', monospace;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--primary-light);
             flex: 1;
+            word-break: break-all;
         }
 
         .copy-btn {
             background: var(--gradient);
             border: none;
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .copy-btn.copied {
-            background: #10b981;
+            background: var(--success);
+        }
+
+        .install-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .install-note::before {
+            content: '💡';
+        }
+
+        /* Chat Install */
+        .chat-install-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .chat-install-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .chat-command {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 16px;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+        }
+
+        /* ZIP Install */
+        .zip-install-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .zip-install-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .zip-install-item:hover {
+            border-color: var(--primary);
+        }
+
+        .zip-install-item .platform {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .zip-install-item .platform-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .zip-install-item .platform-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .zip-install-item .platform-url {
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
         /* Tags */
@@ -530,14 +668,26 @@
                 padding: 80px 0;
             }
 
-            .install-command {
+            .install-section {
+                padding: 24px 16px;
+            }
+
+            .install-tabs {
+                flex-wrap: wrap;
+            }
+
+            .install-tab {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+
+            .install-command-box {
                 flex-direction: column;
                 text-align: center;
             }
 
-            .install-command code {
-                font-size: 14px;
-                word-break: break-all;
+            .install-command-box code {
+                font-size: 13px;
             }
 
             .features-grid {
@@ -547,6 +697,12 @@
             .report-preview {
                 margin: 0 -12px;
                 border-radius: 0;
+            }
+
+            .zip-install-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
             }
         }
     </style>
@@ -563,12 +719,86 @@
                 你的<span>AI情报指挥中心</span><br>
                 自动采集 · 智能分析 · 定时报告
             </p>
-            <div class="install-command">
-                <code>npx clawhub@latest install ai-intelligence-sentinel</code>
-                <button class="copy-btn" onclick="copyCommand()">
-                    <span id="copyText">📋 复制</span>
-                </button>
+            
+            <!-- Install Section -->
+            <div class="install-section">
+                <div class="install-tabs">
+                    <button class="install-tab active" onclick="switchTab('chat')">
+                        💬 对话安装
+                    </button>
+                    <button class="install-tab" onclick="switchTab('command')">
+                        ⌨️ 命令安装
+                    </button>
+                    <button class="install-tab" onclick="switchTab('zip')">
+                        📦 ZIP安装
+                    </button>
+                </div>
+
+                <!-- Chat Install -->
+                <div id="chat-install" class="install-content active">
+                    <div class="chat-install-box">
+                        <p>发送以下指令给你的 Agent，自动完成安装</p>
+                        <div class="chat-command">安装 ai-intelligence-sentinel 技能</div>
+                        <button class="copy-btn" onclick="copyText('安装 ai-intelligence-sentinel 技能')">
+                            <span id="copyText-chat">📋 复制指令</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Command Install -->
+                <div id="command-install" class="install-content">
+                    <div class="install-command-box">
+                        <code>npx clawhub@latest install ai-intelligence-sentinel</code>
+                        <button class="copy-btn" onclick="copyText('npx clawhub@latest install ai-intelligence-sentinel')">
+                            <span id="copyText-command">📋 复制</span>
+                        </button>
+                    </div>
+                    <div class="install-note">需要 Node.js 18+ 环境，首次安装可能需要几分钟</div>
+                </div>
+
+                <!-- ZIP Install -->
+                <div id="zip-install" class="install-content">
+                    <div class="zip-install-list">
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🦞</div>
+                                <div>
+                                    <div class="platform-name">ClawHub</div>
+                                    <div class="platform-url">clawhub.ai/skills/ai-intelligence-sentinel</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('https://clawhub.ai/skills/ai-intelligence-sentinel')">
+                                🔗 打开
+                            </button>
+                        </div>
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🦐</div>
+                                <div>
+                                    <div class="platform-name">虾评 Skill</div>
+                                    <div class="platform-url">xiaping.coze.site</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2')">
+                                🔗 打开
+                            </button>
+                        </div>
+                        <div class="zip-install-item">
+                            <div class="platform">
+                                <div class="platform-icon">🐙</div>
+                                <div>
+                                    <div class="platform-name">GitHub</div>
+                                    <div class="platform-url">github.com/xiaopengs/ai-sentinel</div>
+                                </div>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('https://github.com/xiaopengs/ai-sentinel')">
+                                🔗 打开
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="tags">
                 <span class="tag">AI情报</span>
                 <span class="tag">AI哨兵</span>
@@ -752,19 +982,51 @@
     </footer>
 
     <script>
-        // Copy command
-        function copyCommand() {
-            const command = 'npx clawhub@latest install ai-intelligence-sentinel';
-            navigator.clipboard.writeText(command).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                const text = document.getElementById('copyText');
-                text.textContent = '✓ 已复制';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    text.textContent = '📋 复制';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
+        // Tab switching
+        function switchTab(tab) {
+            // Update tabs
+            document.querySelectorAll('.install-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.install-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tab + '-install').classList.add('active');
+        }
+
+        // Copy function - works on all browsers
+        function copyText(text) {
+            // Create a temporary textarea
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            textarea.style.top = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    // Find the button that was clicked
+                    const btn = event.target.closest('.copy-btn');
+                    const span = btn.querySelector('span');
+                    const originalText = span.textContent;
+                    
+                    span.textContent = '✓ 已复制';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        span.textContent = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制: ' + text);
+            }
+            
+            document.body.removeChild(textarea);
         }
 
         // Intersection Observer for fade-in animations
