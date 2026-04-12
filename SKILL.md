@@ -2,90 +2,161 @@
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
 version: 1.1.0
-description: AI情报哨兵 - 自动采集、分析与报告AI领域最新动态的多源情报系统
+description: AI情报追踪系统。当用户需要追踪AI领域动态、生成AI晨报/晚报、采集GitHub趋势、arXiv论文、技术新闻时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报"
 tools: [shell, filesystem, http]
 author: xiaopengs
+license: MIT
 ---
 
-# AI前沿哨兵 (AI Sentinel)
+# AI前沿哨兵
 
-> 你的AI情报指挥中心，自动采集、分析与报告AI领域最新动态
+> 你的AI情报指挥中心。一键采集、智能分析、自动生成报告。
 
-## 技能概述
+---
 
-AI前沿哨兵是一个开源的AI情报采集系统，帮助用户自动追踪AI领域的最新动态，包括开源项目、学术论文、技术博客、行业新闻等，并生成结构化的晨报和晚报。
+## 🎯 核心功能
 
-**核心能力：**
-- 🔍 多源信息采集（GitHub、arXiv、HackerNews、Twitter/X、RSS等）
-- ⏰ 智能定时调度（晨报08:00、晚报20:00）
-- 📊 智能分析评分（热度+新鲜度+来源可信度）
-- 📄 自动化报告生成（Markdown格式）
-- 🎛️ WebUI管理面板
+| 功能 | 说明 |
+|------|------|
+| **🔍 多源采集** | GitHub Trending、arXiv、HackerNews、15+官方博客RSS、中国AI公司官网 |
+| **📊 智能评分** | 热度+新鲜度+来源可信度+质量，四维评分体系 |
+| **📄 报告生成** | 晨报/晚报/小红书风格，Markdown格式，精美排版 |
+| **⏰ 定时调度** | 晨报08:00、晚报20:00自动执行 |
+| **🎛️ WebUI** | 可视化配置信息源、查看报告、管理模板 |
 
-## 适用场景
+---
 
-- AI从业者追踪最新技术动态
-- 研究人员关注前沿论文
-- 开发者发现优质开源项目
-- 产品经理了解行业趋势
-- 内容创作者获取素材
+## ⚡ Quick Start
 
-## 使用方法
-
-### 1. 基本采集
-
-当用户说"采集AI情报"、"生成AI晨报"、"追踪AI动态"时，执行以下步骤：
+### 一键生成报告
 
 ```bash
-# 采集所有信息源
+# 进入项目目录
+cd ai-sentinel
+
+# Step 1: 采集所有信息源
 python scripts/collect.py --all
 
-# 生成晨报
-python scripts/reporter.py --type morning
-
-# 生成晚报
-python scripts/reporter.py --type evening
+# Step 2: 生成报告
+python scripts/reporter.py --type morning   # 晨报
+python scripts/reporter.py --type evening   # 晚报
 ```
 
-### 2. 单源采集
+**报告输出位置**: `reports/YYYY-MM-DD/morning_report.md`
+
+---
+
+## 📋 使用场景
+
+| 用户需求 | 执行命令 |
+|----------|----------|
+| "采集AI情报" | `python scripts/collect.py --all` |
+| "生成晨报" | `python scripts/reporter.py --type morning` |
+| "生成晚报" | `python scripts/reporter.py --type evening` |
+| "只看GitHub趋势" | `python scripts/collect.py --source github` |
+| "追踪最新论文" | `python scripts/collect.py --source arxiv` |
+| "查看HackerNews热点" | `python scripts/collect.py --source hackernews` |
+
+---
+
+## 📝 报告生成流程
+
+### 完整流程：采集 → 分析 → 生成
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Step 1     │     │  Step 2     │     │  Step 3     │
+│  多源采集    │ ──▶ │  智能分析    │ ──▶ │  报告生成    │
+└─────────────┘     └─────────────┘     └─────────────┘
+     │                    │                    │
+     ▼                    ▼                    ▼
+ GitHub Trending      热度评分             晨报模板
+ arXiv论文            新鲜度评分           晚报模板
+ HackerNews           来源可信度           小红书风格
+ RSS博客              质量评分             Markdown格式
+ 中国AI公司                                精美排版
+```
+
+### Step 1: 数据采集
+
+采集多个信息源的原始数据，输出到 `output/raw_data_*.json`：
 
 ```bash
-# 仅采集GitHub Trending
-python scripts/collect.py --source github
-
-# 仅采集arXiv论文
-python scripts/collect.py --source arxiv
-
-# 仅采集HackerNews
-python scripts/collect.py --source hackernews
+python scripts/collect.py --all              # 全部信息源
+python scripts/collect.py --source github    # 仅GitHub
+python scripts/collect.py --source arxiv     # 仅arXiv
+python scripts/collect.py --source hackernews # 仅HackerNews
 ```
 
-### 3. 查看报告
+### Step 2: 智能分析
 
-生成的报告保存在 `reports/YYYY-MM-DD/` 目录：
-- `morning_report.md` - 晨报
-- `evening_report.md` - 晚报
-- `xiaohongshu_report.md` - 小红书风格报告
+系统自动对采集的数据进行评分分析：
 
-## 配置说明
+- **热度评分**: Stars/Forks/评论数/转发数
+- **新鲜度评分**: 发布时间越近分数越高
+- **来源可信度**: 官方博客 > 技术媒体 > 社区讨论
+- **质量评分**: 内容完整性、技术深度
+
+### Step 3: 报告生成
+
+根据模板生成结构化报告：
+
+```bash
+python scripts/reporter.py --type morning    # 晨报（重点事件）
+python scripts/reporter.py --type evening    # 晚报（完整汇总）
+```
+
+**报告结构**:
+- 📰 今日头条 (P0级事件)
+- 🚀 重磅发布 (P1级进展)
+- 🛠️ 开源项目 (GitHub趋势)
+- 📚 学术论文 (arXiv精选，最多2篇)
+- 💬 社区热议 (HackerNews)
+- 📊 质量评分卡
+
+---
+
+## 📡 信息源覆盖
+
+| 类别 | 信息源 | 说明 |
+|------|--------|------|
+| **开源项目** | GitHub Trending | AI领域热门项目 |
+| **学术论文** | arXiv | cs.AI, cs.LG, cs.CL |
+| **社区讨论** | HackerNews | 开发者热点话题 |
+| **官方博客** | OpenAI, Anthropic, Google AI, DeepMind, HuggingFace, xAI, Cursor | 一手技术发布 |
+| **技术媒体** | InfoQ(全球/中文), TechCrunch AI, VentureBeat AI, MMChat | 行业动态 |
+| **中国AI公司** | 智谱AI, MiniMax, 扣子Coze | 国产大模型进展 |
+
+---
+
+## ⚙️ 配置文件
 
 ### 信息源配置 (`config/sources.yaml`)
 
-系统支持以下信息源：
+```yaml
+# GitHub配置
+github:
+  enabled: true
+  language: python
+  date_range: weekly
+  limit: 20
 
-1. **GitHub Trending** - AI开源项目热度排行
-2. **arXiv** - 最新AI论文（cs.AI, cs.LG, cs.CL）
-3. **HackerNews** - 开发者社区热点讨论
-4. **Twitter/X** - AI大咖动态（需API Token）
-5. **RSS博客** - 官方博客和技术媒体
-   - Anthropic, OpenAI, Google AI, DeepMind
-   - Hugging Face, xAI, Cursor
-   - TechCrunch AI, VentureBeat AI
-   - InfoQ全球/中文
-   - MMChat AI资讯
-6. **中国AI公司** - 官网新闻解析
-   - 智谱AI、MiniMax、扣子Coze
+# arXiv配置
+arxiv:
+  enabled: true
+  categories:
+    - cs.AI
+    - cs.LG
+    - cs.CL
+  max_results: 20
+
+# RSS源
+custom_feeds:
+  - name: "OpenAI Blog"
+    url: "https://openai.com/blog/rss.xml"
+    category: "Official Blog"
+```
 
 ### 调度配置 (`config/schedule.yaml`)
 
@@ -99,89 +170,92 @@ schedule:
     time: "20:00"
 ```
 
-## 工作流程
+---
 
-1. **采集阶段** - 从配置的信息源拉取最新数据
-2. **分析阶段** - 计算热度、新鲜度、质量评分
-3. **筛选阶段** - 按优先级排序，过滤低质量内容
-4. **生成阶段** - 使用Jinja2模板生成Markdown报告
-5. **存档阶段** - 按日期保存到 `reports/` 目录
-
-## 项目结构
+## 📁 项目结构
 
 ```
 ai-sentinel/
-├── SKILL.md                    # 本文档
-├── config/                     # 配置文件
-│   ├── sources.yaml            # 信息源配置
-│   ├── settings.yaml           # API配置
-│   └── schedule.yaml           # 调度配置
-├── scripts/                    # 核心脚本
-│   ├── collect.py              # 采集入口
-│   ├── analyzer.py             # 分析评分
-│   ├── reporter.py             # 报告生成
-│   ├── quality_scorer.py       # 质量评分系统
-│   └── parsers/                # 平台解析器
-│       ├── github_trending.py
-│       ├── arxiv.py
-│       ├── hackernews.py
-│       ├── blog_rss.py
-│       └── web_news.py
-├── templates/                  # 报告模板
-│   ├── morning_report.md
-│   ├── evening_report.md
-│   └── xiaohongshu_report.md
-├── reports/                    # 报告存档
-│   └── YYYY-MM-DD/
-│       ├── morning_report.md
-│       ├── evening_report.md
-│       └── xiaohongshu_report.md
-├── webui/                      # Web界面
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-└── references/                 # 参考文档
-    ├── sources_guide.md
-    └── api_setup.md
+├── SKILL.md              # 本文件
+├── README.md             # 英文文档
+├── README_CN.md          # 中文文档
+├── config/
+│   ├── sources.yaml      # 信息源配置
+│   ├── settings.yaml     # 系统设置
+│   └── schedule.yaml     # 调度配置
+├── scripts/
+│   ├── collect.py        # 采集脚本
+│   ├── reporter.py       # 报告生成脚本
+│   └── parsers/          # 各源解析器
+├── templates/
+│   ├── morning_template.md
+│   └── evening_template.md
+├── webui/                # Web管理界面
+└── reports/              # 生成的报告
+    └── YYYY-MM-DD/
+        ├── morning_report.md
+        └── evening_report.md
 ```
 
-## 安装依赖
+---
+
+## 🔗 相关链接
+
+- **GitHub**: https://github.com/xiaopengs/ai-sentinel
+- **ClawHub**: https://clawhub.ai/skills/ai-intelligence-sentinel
+- **虾评Skill**: https://xiaping.coze.site/skill/08037f81-1e91-4115-80ad-2e2c1d0681d2
+- **项目展示**: http://thinkspc.fun/static/sentinel/
+
+---
+
+## 📌 使用示例
+
+### 示例1: 生成今日AI晚报
 
 ```bash
-pip install requests feedparser pyyaml jinja2 schedule
+cd ai-sentinel
+python scripts/collect.py --all
+python scripts/reporter.py --type evening
 ```
 
-## 扩展指南
+输出: `reports/2026-04-12/evening_report.md`
 
-### 添加新信息源
+### 示例2: 仅追踪GitHub热门项目
 
-1. 在 `scripts/parsers/` 创建新解析器
-2. 实现 `fetch()` 方法返回标准格式数据
-3. 在 `config/sources.yaml` 添加配置
-4. 在 `scripts/collect.py` 注册解析器
+```bash
+python scripts/collect.py --source github
+python scripts/reporter.py --type morning
+```
 
-### 自定义报告模板
+### 示例3: 自定义信息源
 
-编辑 `templates/` 目录下的模板文件，使用Jinja2语法：
-- `{{ title }}` - 标题
-- `{{ items }}` - 条目列表
-- `{{ analysis }}` - 分析内容
+编辑 `config/sources.yaml`，添加新的RSS源：
 
-## 常见问题
+```yaml
+custom_feeds:
+  - name: "My AI Blog"
+    url: "https://example.com/feed"
+    category: "Personal Blog"
+```
 
-**Q: Twitter采集失败？**  
-A: 需要Twitter Developer账号和Bearer Token，未配置时自动跳过。
+---
 
-**Q: 如何添加自定义关键词？**  
-A: 编辑 `config/sources.yaml` 中各源的 `keywords` 字段。
+## ⚠️ 注意事项
 
-**Q: 报告保存位置？**  
-A: 默认 `reports/YYYY-MM-DD/`，可在配置中修改。
+1. **首次运行**: 确保 `pip install requests feedparser pyyaml jinja2`
+2. **Twitter/X源**: 需要配置API Token（可选）
+3. **报告目录**: 自动创建，无需手动创建
+4. **数据去重**: 基于URL自动去重，避免重复内容
 
-## 仓库地址
+---
 
-https://github.com/xiaopengs/ai-sentinel
+## 🔄 更新日志
 
-## License
+**v1.1.0 (2026-04-12)**
+- 新增项目展示页
+- 英文README为主文档
+- 发布到ClawHub和虾评Skill
 
-MIT License - 详见 LICENSE 文件
+**v1.0.0 (2026-04-10)**
+- 初始版本发布
+- 多源采集 + 智能评分 + 报告生成
