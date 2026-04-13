@@ -788,11 +788,16 @@
                 <!-- Chat Install -->
                 <div id="chat-install" class="install-content active">
                     <div class="chat-install-box">
-                        <div class="chat-install-title">复制提示词，发送给任意 AI 助手即可安装</div>
-                        <div class="chat-install-support">支持：OpenClaw、WorkBuddy、QClaw、Kimi、Claude 等</div>
-                        <div class="chat-command">安装 ClawHub 和技能<br><br>请先检查是否已安装 ClawHub 商店，若未安装，请执行：<br>npm i -g clawhub<br><br>然后安装 ai-intelligence-sentinel 技能。</div>
-                        <button class="copy-btn" onclick="copyText('安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。')">
-                            <span id="copyText-chat">📋 复制指令</span>
+                        <div class="chat-install-title">第一步：安装技能</div>
+                        <div class="chat-install-support">支持ClawHub的AI助手：OpenClaw、WorkBuddy、QClaw等</div>
+                        <div class="chat-command">安装 ai-intelligence-sentinel 技能</div>
+                        <button class="copy-btn" onclick="copyText('安装 ai-intelligence-sentinel 技能')">
+                            <span id="copyText-chat">📋 复制安装指令</span>
+                        </button>
+                        <div class="chat-install-title" style="margin-top: 24px;">第二步：使用技能</div>
+                        <div class="chat-command">使用 ai-intelligence-sentinel 技能生成今日AI情报报告</div>
+                        <button class="copy-btn" onclick="copyText('使用 ai-intelligence-sentinel 技能生成今日AI情报报告')">
+                            <span id="copyText-use">📋 复制使用指令</span>
                         </button>
                     </div>
                 </div>

@@ -32,15 +32,29 @@
 
 ### 方式一：对话安装（推荐）
 
-复制以下提示词，发送给任意AI助手（OpenClaw、WorkBuddy、QClaw、Kimi、Claude等）：
+**第一步：安装技能**
+
+复制以下提示词，发送给支持ClawHub的AI助手（OpenClaw、WorkBuddy、QClaw等）：
 
 ```
-安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。
+安装 ai-intelligence-sentinel 技能
 ```
 
-安装完成后，发送以下指令生成报告：
+或通过ClawHub命令行：
+```bash
+npx clawhub@latest install ai-intelligence-sentinel
 ```
-用AI哨兵技能生成今日AI情报报告
+
+**第二步：使用技能**
+
+安装完成后，用技能名称触发：
+```
+使用 ai-intelligence-sentinel 技能生成今日AI情报报告
+```
+
+或简化为：
+```
+ai-intelligence-sentinel 生成今日报告
 ```
 
 ### 方式二：命令行安装

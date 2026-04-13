@@ -32,15 +32,29 @@
 
 ### Option 1: Chat Install (Recommended)
 
-Copy and send to any AI assistant (OpenClaw, WorkBuddy, QClaw, Kimi, Claude, etc.):
+**Step 1: Install the skill**
+
+Copy and send to any AI assistant that supports ClawHub (OpenClaw, WorkBuddy, QClaw, etc.):
 
 ```
-安装 ClawHub 和技能 请先检查是否已安装 ClawHub 商店，若未安装，请安装 npm i -g clawhub ，然后安装 ai-intelligence-sentinel 技能。
+安装 ai-intelligence-sentinel 技能
 ```
 
-After installation, generate reports with:
+Or via ClawHub CLI:
+```bash
+npx clawhub@latest install ai-intelligence-sentinel
 ```
-用AI哨兵技能生成今日AI情报报告
+
+**Step 2: Use the skill**
+
+After installation, trigger with the skill name:
+```
+使用 ai-intelligence-sentinel 技能生成今日AI情报报告
+```
+
+Or simply:
+```
+ai-intelligence-sentinel 生成今日报告
 ```
 
 ### Option 2: Command Line
