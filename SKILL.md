@@ -1,7 +1,7 @@
 ---
 slug: ai-intelligence-sentinel
 name: AI前沿哨兵
-version: 2.0.0
+version: 2.1.0
 description: AI情报追踪系统 + 大数据业界洞察双引擎。当用户需要追踪AI领域动态、生成AI晨报/晚报时使用。触发词：AI情报、AI哨兵、AI资讯、AI动态、科技新闻、论文追踪、开源项目追踪、晨报、晚报。**大数据洞察模块**：大数据洞察、数据中台、湖仓一体、数据治理、荣耀对标、华为OPPOvivo数据平台。
 trigger: "AI情报|AI哨兵|AI资讯|AI动态|科技新闻|论文追踪|开源项目追踪|晨报|晚报|大数据洞察|数据中台|湖仓一体|数据治理|荣耀对标"
 tools: [shell, filesystem, http]
@@ -293,6 +293,53 @@ load_config ./MEMORY.md  # 项目上下文：当前关注的技术方向
 | 技术媒体 | The Verge | https://www.theverge.com |
 | AI追踪 | AI News | https://venturebeat.com/category/ai/ |
 
+### 🌐 Follow Builders 信息源（v2.1.0新增）
+
+**集成方式**：安装 [follow-builders](https://github.com/zarazhangrui/follow-builders) 技能后，通过其中央Feed获取AI Builder动态。
+
+**追踪的X/Twitter账号（25人）：**
+
+| Builder | Handle | 身份 |
+|---------|--------|------|
+| Andrej Karpathy | @karpathy | AI研究者 |
+| Swyx | @swyx | AI Engineer |
+| Josh Woodward | @joshwoodward | Google |
+| Kevin Weil | @kevinweil | OpenAI |
+| Peter Yang | @petergyang | 产品 |
+| Nan Yu | @thenanyu | 研究 |
+| Madhu Guru | @realmadhuguru | 工程 |
+| Amanda Askell | @AmandaAskell | Anthropic |
+| Cat Wu | @_catwu | 产品 |
+| Thariq | @trq212 | 研究 |
+| Google Labs | @GoogleLabs | Google |
+| Amjad Masad | @amasad | Replit CEO |
+| Guillermo Rauch | @rauchg | Vercel CEO |
+| Alex Albert | @alexalbert__ | Anthropic |
+| Aaron Levie | @levie | Box CEO |
+| Ryo Lu | @ryolu_ | 工程 |
+| Garry Tan | @garrytan | YC |
+| Matt Turck | @mattturck | FirstMark |
+| Zara Zhang | @zarazhangrui | 记者 |
+| Nikunj Kothari | @nikunj | 工程 |
+| Peter Steinberger | @steipete | iOS开发 |
+| Dan Shipper | @danshipper | Every |
+| Aditya Agarwal | @adityaag | 工程 |
+| Sam Altman | @sama | OpenAI CEO |
+| Claude | @claudeai | Anthropic |
+
+**追踪的AI播客（6个）：**
+
+| 播客 | URL |
+|------|-----|
+| Latent Space | https://www.youtube.com/@LatentSpacePod |
+| Training Data | https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8 |
+| No Priors | https://www.youtube.com/@NoPriorsPodcast |
+| Unsupervised Learning | https://www.youtube.com/@RedpointAI |
+| The MAD Podcast | https://www.youtube.com/@DataDrivenNYC/videos |
+| AI & I by Every | https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL |
+
+**使用方式**：在信息采集阶段，执行 `cd .skills/follow-builders/scripts && node prepare-digest.js 2>/dev/null`，从输出JSON的 `x` 和 `podcasts` 字段提取Builder动态，作为辅助信息源融入报告。
+
 ### 🟢 大数据洞察信息源
 
 | 类型 | 来源 | URL |
@@ -360,6 +407,7 @@ ai-sentinel/
 
 | 版本 | 日期 | 更新内容 |
 |------|------|----------|
+| 2.1.0 | 2026-05-14 | 新增Follow Builders信息源：25个AI Builder X动态 + 6个顶级AI播客 |
 | 2.0.0 | 2026-04-21 | 新增大数据业界洞察模块 |
 | 1.4.2 | 2026-04-10 | 优化搜索策略和报告模板 |
 | 1.0.0 | 2026-04-08 | 初始版本 |
