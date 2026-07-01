@@ -228,3 +228,11 @@ custom_feeds:
     url: https://www.infoq.cn/rss/
     category: Tech Media (Chinese)
     enabled: true
+
+  # AI HOT 日报 (virxact.com)
+  - name: AI HOT 日报
+    url: https://aihot.virxact.com/feed/daily.xml
+    category: AI News Aggregator
+    enabled: true
+    description: "每日08:00北京时间发布的精编AI日报，覆盖模型发布、开源项目、行业动态"
+    language: zh-CN
